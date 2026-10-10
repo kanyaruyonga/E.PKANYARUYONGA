@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EP KANYARUYONGA</title>
+<meta name="description" content="Urubuga ruhuza abakozi ba EP KANYARUYONGA (Primary • Nursery)">
+<meta name="theme-color" content="#0B4FA8">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Kanyaruyonga">
+<link rel="icon" type="image/webp" data-logo>
+<link rel="apple-touch-icon" data-logo>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F5FA;--card:#fff;--ink:#0B1F3A;--mu:#566882;--pr:#0B4FA8;--prt:#fff;--acc:#FFC400;--acct:#0B1F3A;--ok:#177A35;--bad:#C0352B;--warn:#A85A07;--bd:#DAE3F0;--soft:#E7EFFB;--soft2:#F5F8FD;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#09131F;--card:#0F1D31;--ink:#E7EEF9;--mu:#9DB0CB;--pr:#6BA8FF;--prt:#06142B;--acc:#FFD23F;--acct:#0B1F3A;--ok:#4ADE80;--bad:#FF8F85;--warn:#FBBF24;--bd:#22344F;--soft:#15294A;--soft2:#112240;color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 'Public Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-tap-highlight-color:transparent}
+h1,h2,h3{font-family:'Bricolage Grotesque','Public Sans',system-ui,sans-serif;margin:0;letter-spacing:-.01em;line-height:1.2}
+h2{font-size:17px;font-weight:700;margin-bottom:10px}
+h3{font-size:18px;font-weight:700;margin-bottom:8px}
+p{margin:0 0 8px}
+a{color:var(--pr)}
+small,.mu{font-size:12.5px;color:var(--mu)}
+button,input,select,textarea{font:inherit;color:var(--ink)}
+input,select,textarea{display:block;width:100%;min-width:0;background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px 12px;margin:0 0 8px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--pr);box-shadow:0 0 0 3px color-mix(in srgb,var(--pr) 22%,transparent)}
+input[type=checkbox]{display:inline-block;width:20px;height:20px;margin:0;padding:0;accent-color:var(--pr);flex:none}
+textarea{resize:vertical;min-height:84px}
+label.fl{display:block;font-size:12.5px;color:var(--mu);margin:2px 0 4px;font-weight:600}
+.pre{white-space:pre-wrap;word-break:break-word}
+.ic{width:20px;height:20px;flex:none}
+.ic.s{width:16px;height:16px}
+button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--pr);outline-offset:2px}
+/* shell */
+#app{display:none}#app.on{display:block}
+.side{position:fixed;top:0;bottom:0;left:0;width:min(86vw,300px);transform:translateX(-104%);transition:transform .22s ease;background:var(--card);border-right:1px solid var(--bd);z-index:40;display:flex;flex-direction:column;overflow-y:auto;padding-bottom:env(safe-area-inset-bottom,0px)}
+.side.open{transform:none}
+.scrim{position:fixed;inset:0;background:rgba(5,15,35,.5);z-index:30;display:none}.scrim.on{display:block}
+.sh{padding:calc(env(safe-area-inset-top,0px) + 14px) 16px 14px;background:linear-gradient(180deg,var(--soft) 0%,var(--card) 100%);border-bottom:1px solid var(--bd);position:relative;overflow:hidden}
+.sh .sun{position:absolute;right:-18px;top:-6px;width:150px;opacity:.5;pointer-events:none}
+.sh .who{display:flex;gap:10px;align-items:center;position:relative}
+.sh b{display:block;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:16px}
+.sh select{margin:10px 0 0;position:relative}
+.sn{padding:8px;flex:1}
+.sn button{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:0;border-radius:10px;padding:11px 12px;cursor:pointer;font-weight:600;color:var(--ink);position:relative}
+.sn button:hover{background:var(--soft2)}
+.sn button.on{background:var(--soft);color:var(--pr)}
+.sn button.on::before{content:"";position:absolute;left:0;top:9px;bottom:9px;width:4px;border-radius:0 4px 4px 0;background:var(--acc)}
+.sf{padding:8px;border-top:1px solid var(--bd)}
+.sf button{display:flex;align-items:center;gap:12px;width:100%;background:none;border:0;padding:11px 12px;border-radius:10px;cursor:pointer;color:var(--bad);font-weight:600}
+.col{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:calc(env(safe-area-inset-top,0px) + 8px) 10px 8px;background:var(--card);border-bottom:1px solid var(--bd)}
+.top h1{font-size:19px;font-weight:800;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top small{display:block;font-family:'Public Sans',system-ui,sans-serif;font-weight:500;letter-spacing:0}
+.ib{position:relative;display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;border:0;background:none;cursor:pointer;color:var(--ink)}
+.ib:hover{background:var(--soft2)}
+.bd{position:absolute;top:3px;right:3px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--acc);color:var(--acct);font-size:11px;font-weight:800;line-height:18px;text-align:center}
+#view{flex:1;width:100%;max-width:800px;margin:0 auto;padding:14px 14px calc(96px + env(safe-area-inset-bottom,0px))}
+.bnav{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;background:var(--card);border-top:1px solid var(--bd);padding:4px 4px calc(4px + env(safe-area-inset-bottom,0px))}
+.bnav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;padding:6px 2px;border-radius:10px;cursor:pointer;color:var(--mu);font-size:11px;font-weight:600;position:relative;min-width:0}
+.bnav button span.t{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bnav button.on{color:var(--pr)}
+.bnav button.on::before{content:"";position:absolute;top:0;left:30%;right:30%;height:3px;border-radius:0 0 3px 3px;background:var(--acc)}
+.bnav .bd{top:2px;right:calc(50% - 24px)}
+@media(min-width:960px){.side{transform:none;width:280px}.col{margin-left:280px}.bnav,.menu-b,.scrim{display:none!important}#view{padding-bottom:40px}}
+/* gate */
+#gate{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px}
+.gh{text-align:center;margin-bottom:14px;position:relative;width:100%;max-width:420px}
+.gh .sun{width:230px;display:block;margin:0 auto -30px;opacity:.95}
+.gh img.lg{width:132px;height:132px;position:relative}
+.gh h1{font-size:25px;font-weight:800;margin-top:6px}
+.gc{width:100%;max-width:420px}
+.pwrow{display:flex;gap:8px;align-items:center;margin:0 0 10px;font-size:14px;color:var(--ink)}
+/* cards */
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:12px}
+.card>h2:first-child{margin-top:0}
+.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}.row.end{justify-content:flex-end}.row.end>*{flex:0 0 auto}.row.wrap{flex-wrap:wrap}.row.nf>*{flex:0 0 auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--pr);color:var(--prt);border:0;border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:700;text-decoration:none;min-height:42px}
+.btn:disabled{opacity:.55;cursor:default}
+.btn.g{background:var(--soft);color:var(--ink)}
+.btn.d{background:var(--bad);color:#fff}
+.btn.sm{padding:6px 12px;min-height:34px;font-size:13.5px}
+.btn.full{width:100%}
+.lk{background:none;border:0;padding:4px 6px;cursor:pointer;color:var(--pr);font-weight:600}
+.lk.bad{color:var(--bad)}
+.seg{display:flex;background:var(--soft);border-radius:12px;padding:4px;margin-bottom:12px;gap:4px}
+.seg button{flex:1;border:0;background:none;padding:9px 6px;border-radius:9px;cursor:pointer;font-weight:700;color:var(--mu);position:relative}
+.seg button.on{background:var(--card);color:var(--ink)}
+.seg .bd{position:static;display:inline-block;margin-left:6px;vertical-align:1px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stat{background:var(--soft);border-radius:12px;padding:11px 12px}
+.stat b{display:block;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:21px;line-height:1.2;word-break:break-word}
+.stat span{font-size:12.5px;color:var(--mu)}
+.it{padding:10px 0;border-bottom:1px solid var(--bd)}.it:last-child{border-bottom:0;padding-bottom:0}.it:first-child{padding-top:0}
+.sc{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{padding:7px 6px;border-bottom:1px solid var(--bd);text-align:left;white-space:nowrap}
+th{color:var(--mu);font-size:12.5px;font-weight:600}
+td input{margin:0;min-width:58px;padding:7px 8px}
+.tag{display:inline-block;padding:2px 9px;border-radius:10px;font-size:12px;font-weight:700;background:var(--soft);color:var(--ink)}
+.tag.w{background:color-mix(in srgb,var(--acc) 35%,transparent);color:var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:2px;background:var(--soft);border-radius:14px;padding:3px 4px 3px 11px;margin:2px;font-size:13px}
+.chip .lk{padding:0 6px;color:var(--bad)}
+.bad{color:var(--bad)}.ok{color:var(--ok)}.warn{color:var(--warn)}
+.empty{padding:18px 8px;text-align:center;color:var(--mu)}
+.av{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--soft);color:var(--pr);font-weight:800;font-size:14px;overflow:hidden;flex:none}
+.av img{width:100%;height:100%;object-fit:cover;display:block}
+.av.l{width:64px;height:64px;font-size:22px}.av.s{width:32px;height:32px;font-size:12px}
+.av.h0{background:#DCEBFF;color:#0B4FA8}.av.h1{background:#FFF0B8;color:#6B4B00}.av.h2{background:#D7F2DF;color:#14632B}.av.h3{background:#FFDDD8;color:#8F2A20}.av.h4{background:#E6DDFB;color:#4B2C99}.av.h5{background:#D5F1F4;color:#0E5A66}
+.hd{display:flex;gap:10px;align-items:center;margin-bottom:6px}.hd>div{flex:1;min-width:0}.hd b{display:block}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px;margin:8px 0}
+.gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;cursor:zoom-in;background:var(--soft)}
+img.ph{width:100%;max-height:300px;object-fit:contain;border-radius:10px;background:var(--soft);cursor:zoom-in}
+.file{display:flex;align-items:center;gap:10px;padding:9px 11px;margin:6px 0 0;border:1px solid var(--bd);border-radius:10px;text-decoration:none;color:var(--ink);background:var(--soft2)}
+.file span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pick{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 8px}
+.new{border-left:4px solid var(--acc);padding-left:10px}
+.thr{display:flex;flex-direction:column;gap:6px;max-height:55vh;overflow-y:auto;padding:4px 2px 8px}
+.bub{max-width:82%;padding:8px 12px;border-radius:16px;background:var(--soft);align-self:flex-start;word-break:break-word;white-space:pre-wrap}
+.bub.me{align-self:flex-end;background:var(--pr);color:var(--prt)}
+.bub small{display:block;opacity:.75;color:inherit;margin-top:2px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--acc);display:inline-block;flex:none}
+.sun{display:block}
+/* overlays */
+#modal{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(5,15,35,.55)}#modal.on{display:flex}
+.dlg{background:var(--card);border-radius:16px;padding:18px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.dlg p{color:var(--mu)}
+#lb{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.88);padding:12px;cursor:zoom-out}#lb.on{display:flex}
+#lb img{max-width:100%;max-height:100%;object-fit:contain}
+#toasts{position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:90;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
+.toast{pointer-events:auto;max-width:460px;padding:11px 16px;border-radius:12px;background:var(--ink);color:var(--bg);font-weight:600;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.toast.ok{background:var(--ok);color:#fff}.toast.bad{background:var(--bad);color:#fff}
+@media(min-width:960px){#toasts{bottom:24px}}
+@media (prefers-color-scheme:dark){.toast.ok{color:#06240F}.toast.bad{color:#2A0A07}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.side,.top,.bnav{display:none!important}.col{margin:0}}
+[hidden]{display:none!important}
+
+</style>
+</head>
+<body>
+<div id="gate"></div>
+<div id="app">
+<aside id="side" class="side" aria-label="Menu"></aside>
+<div id="scrim" class="scrim" data-a="closeMenu"></div>
+<div class="col"><header id="top" class="top"></header><main id="view"></main></div>
+<nav id="bnav" class="bnav" aria-label="Ibyingenzi"></nav>
+</div>
+<div id="modal"></div>
+<div id="lb" data-a="lbx" role="dialog" aria-label="Ifoto"></div>
+<div id="toasts" aria-live="polite"></div>
+<script>
+'use strict';
+const LOGO='data:image/webp;base64,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';
+const CL=['N1','N2','N3','P1','P2','P3','P4','P5','P6'];
+const SUB=['Kinyarwanda','English','Mathematics','Social and Religious Studies (SRS)','Science and Elementary Technology (SET)','Creative Arts','Physical Education and Sports (PES)'];
+const TD=[['2026-27-T1','2026-09-07','2026-12-18','Igihembwe 1 (7 Nzeri - 18 Ukuboza 2026)'],['2026-27-T2','2027-01-14','2027-04-02','Igihembwe 2 (14 Mutarama - 2 Mata 2027)'],['2026-27-T3','2027-04-19','2027-07-02','Igihembwe 3 (19 Mata - 2 Nyakanga 2027)']];
+const MAXP=4,MAXFILE=8*1024*1024,DOCEXT=['pdf','doc','docx','xls','xlsx','ppt','pptx','txt','csv'];
+const RL={dev:'Moderator',director:'Umuyobozi',teacher:'Umwarimu',acct:'Umucungamutungo'};
+const TB={dash:['Incamake','home'],com:['Itumanaho','msg'],staff:['Abakozi','users'],stu:['Abanyeshuri','book'],att:['Abahari','check'],gr:['Amanota','award'],plan:["Gahunda z'amasomo",'clip'],fin:['Amafaranga','wallet'],mod:['Moderator','shield'],me:['Konti yanjye','user']};
+const COLS=['staff','st','set','unlock','ann','msg','gr','att','attreq','pay','exp','moneyreq','plan','log'];
+const REASONS=['Arwaye',"Ibibazo by'umuryango",'Yahawe uruhushya','Ntazwi'];
+const IC={
+menu:'<line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>',
+home:'<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+msg:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+users:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+book:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+check:'<polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
+award:'<circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>',
+clip:'<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/>',
+wallet:'<rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>',
+shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+user:'<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+out:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>',
+bell:'<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>',
+clipb:'<path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>',
+file:'<path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/>',
+image:'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>',
+send:'<line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>',
+x:'<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
+back:'<polyline points="15 18 9 12 15 6"/>',
+more:'<circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/>'
+};
+const ic=(n,c='')=>`<svg class="ic ${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[n]||''}</svg>`;
+const sun=()=>{let r='';for(let i=0;i<7;i++){const a=Math.PI*(i+.5)/7,c=Math.cos(a),s=Math.sin(a);r+=`<line x1="${(100-c*60).toFixed(1)}" y1="${(104-s*60).toFixed(1)}" x2="${(100-c*90).toFixed(1)}" y2="${(104-s*90).toFixed(1)}"/>`}return `<svg class="sun" viewBox="0 0 200 110" aria-hidden="true"><g stroke="var(--acc)" stroke-width="7" stroke-linecap="round">${r}</g><path d="M54 104a46 46 0 0 1 92 0z" fill="var(--acc)"/></svg>`};
+
+/* ---------- ibikoresho rusange ---------- */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad=n=>String(n).padStart(2,'0');
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+const fmt=t=>new Date(t).toLocaleDateString('en-GB');
+const fmtT=t=>{const d=new Date(t);return d.toLocaleDateString('en-GB')+' '+pad(d.getHours())+':'+pad(d.getMinutes())};
+const money=n=>(Math.round(+n||0)).toLocaleString('en-US')+' FRw';
+const clean=o=>{const r={};Object.keys(o).forEach(k=>{if(o[k]!==undefined)r[k]=o[k]});return r};
+const ls={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const safeName=n=>String(n||'file').replace(/[^\w.\-]+/g,'_').slice(-80);
+const extOf=n=>(String(n).split('.').pop()||'').toLowerCase();
+const sizeTxt=b=>b>=1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB';
+const autoT=()=>{const t=today();return(TD.find(x=>t<=x[2])||TD[2])[0]};
+const tl=id=>((TD.find(t=>t[0]==id)||[0,0,0,id])[3]).split(' (')[0];
+const dl=(n,t,m)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:m}));a.download=n;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)};
+const shrink=(f,max=1000,q=.6,sq=false)=>new Promise((ok,no)=>{const u=URL.createObjectURL(f),i=new Image();i.onload=()=>{try{let sx=0,sy=0,sw=i.width,sh=i.height;if(sq){const m=Math.min(sw,sh);sx=(sw-m)/2;sy=(sh-m)/2;sw=sh=m}const k=Math.min(1,max/Math.max(sw,sh)),c=document.createElement('canvas');c.width=Math.max(1,Math.round(sw*k));c.height=Math.max(1,Math.round(sh*k));c.getContext('2d').drawImage(i,sx,sy,sw,sh,0,0,c.width,c.height);URL.revokeObjectURL(u);ok(c.toDataURL('image/jpeg',q))}catch(e){no(e)}};i.onerror=()=>{URL.revokeObjectURL(u);no(new Error('Ifoto ntisomeka. Gerageza indi.'))};i.src=u});
+
+/* ---------- imiterere ---------- */
+let U=null,uid='',meLoaded=false,D={},tab='',dirty=false,authReady=false,subs=[],dsubs=[],subSig='',M2={},ready={},started=false,booted=false;
+const G={},PF={photos:[],docs:[],plan:null};
+const rows=c=>Object.entries(D[c]||{}).map(([id,d])=>({id,...d})).sort((a,b)=>(b.ts||0)-(a.ts||0));
+const M=()=>D.me||D.staff?.[uid]||{};
+const role=()=>M().role||'';
+const isDev=()=>role()=='dev';
+const boss=()=>['dev','director'].includes(role());
+const activeUser=()=>!!U&&!!D.me&&!M().off&&['dev','director','teacher','acct'].includes(M().role);
+const dn=()=>isDev()?'Sisitemu':(M().name||(U&&U.email)||'');
+const nm=id=>D.staff?.[id]?.name||'?';
+const vis=()=>rows('staff').filter(s=>!s.gone&&s.role!='dev').sort((a,b)=>String(a.name).localeCompare(String(b.name)));
+const stIn=c=>rows('st').filter(s=>s.cls==c).sort((a,b)=>String(a.name).localeCompare(String(b.name)));
+const canSt=()=>activeUser()&&(boss()||D.set?.main?.delegate==uid);
+const canPost=()=>activeUser()&&(isDev()||(D.set?.main?.posters||[]).includes(uid));
+const TERM=()=>{const v=D.set?.main?.term;return TD.some(t=>t[0]==v)?v:autoT()};
+const pays=()=>rows('pay').filter(p=>p.term==TERM()),exps=()=>rows('exp').filter(p=>p.term==TERM()),atts=()=>rows('att').filter(p=>p.term==TERM());
+const paid=s=>pays().filter(p=>p.sid==s).reduce((a,p)=>a+(+p.amt||0),0);
+const derive=(as,ct)=>[...new Set([...(as||[]).map(x=>String(x).split('|')[0]),ct].filter(Boolean))];
+const myCls=()=>boss()?CL:derive(M().as,M().ct);
+const mySub=c=>boss()?SUB:(M().as||[]).filter(x=>x.startsWith(c+'|')).map(x=>x.split('|')[1]);
+const grOf=(sid,s)=>{const t=TERM(),si=SUB.indexOf(s);return D.gr?.[t+'_'+sid+'_'+si]?.v};
+const grTot=(sid,s)=>(grOf(sid,s)||[]).reduce((a,b)=>a+(+b||0),0);
+const grAvg=sid=>{const k=SUB.filter(s=>grOf(sid,s));return k.length?Math.round(k.reduce((a,s)=>a+grTot(sid,s),0)/k.length):0};
+const unlKey=(c,s)=>TERM()+'_'+c+'_'+SUB.indexOf(s);
+
+/* ---------- avatar ---------- */
+function av(id,sz=''){const s=D.staff?.[id]||(id==uid?D.me:null)||{},n=String(s.name||'?');
+ if(s.role=='dev')return `<span class="av ${sz}"><img src="${LOGO}" alt=""></span>`;
+ if(s.photo)return `<span class="av ${sz}"><img src="${esc(s.photo)}" alt=""></span>`;
+ const ini=n.split(/\s+/).filter(Boolean).map(x=>x[0]).slice(0,2).join('').toUpperCase()||'?',h=[...String(id)].reduce((a,c)=>a+c.charCodeAt(0),0)%6;
+ return `<span class="av ${sz} h${h}">${esc(ini)}</span>`}
+
+/* ---------- ubutumwa bw'agateganyo (toast) n'amadirishya ---------- */
+function toast(m,k=''){const w=$('toasts');if(!w)return;const e=document.createElement('div');e.className='toast '+k;e.textContent=m;e.setAttribute('role','status');w.appendChild(e);setTimeout(()=>e.remove(),k=='bad'?5200:3200)}
+function failMsg(e){const c=(e&&e.code)||'',m=(e&&e.message)||String(e||'');
+ const T={'permission-denied':'Ntabwo wemerewe gukora ibi.','firestore/permission-denied':'Ntabwo wemerewe gukora ibi.','unavailable':'Interineti ntiboneka. Ongera ugerageze.','storage/unauthorized':'Ntabwo wemerewe kohereza ifaile (Storage Rules).','storage/unknown':'Kohereza ifaile ntibyakunze. Genzura Firebase Storage.','storage/retry-limit-exceeded':'Kohereza ifaile byatinze cyane. Ongera ugerageze.','auth/email-already-in-use':'Iyi imeri isanzweho.','auth/invalid-email':'Imeri ntabwo yanditse neza.','auth/weak-password':'Ijambobanga rigire nibura inyuguti 6.','auth/network-request-failed':'Interineti ntiboneka.','auth/invalid-credential':'Imeri cyangwa ijambobanga si byo.','auth/wrong-password':'Ijambobanga si ryo.','auth/user-not-found':'Iyi imeri ntiyabonetse.','auth/user-disabled':'Iyi konti yafunzwe.','auth/too-many-requests':'Wagerageje kenshi. Tegereza gato ongera ugerageze.','auth/missing-email':'Andika imeri.'};
+ const key=c.replace(/^firestore\//,'');return T[c]||T[key]||('Ntibyakunze: '+m)}
+function fail(e){console.error(e);toast(failMsg(e),'bad')}
+async function run(fn,okMsg){try{const r=await fn();if(okMsg)toast(okMsg,'ok');return r===undefined?true:r}catch(e){fail(e);return false}}
+const A=(c,d)=>FB.add(c,{...d,ts:Date.now()});
+const log=a=>{try{FB.add('log',{who:dn(),act:a,uid,ts:Date.now()}).catch(()=>{})}catch(e){}};
+function dlg(o){return new Promise(res=>{const m=$('modal');
+ const f=(o.fields||[]).map(x=>{let h=`<label class="fl">${esc(x.label)}</label>`;
+  if(x.type=='select')h+=`<select data-f="${x.id}">${x.opts.map(p=>`<option value="${esc(p[0])}" ${String(p[0])==String(x.value)?'selected':''}>${esc(p[1])}</option>`).join('')}</select>`;
+  else if(x.type=='textarea')h+=`<textarea data-f="${x.id}" rows="3" placeholder="${esc(x.ph||'')}">${esc(x.value||'')}</textarea>`;
+  else h+=`<input data-f="${x.id}" type="${x.type||'text'}" value="${esc(x.value??'')}" placeholder="${esc(x.ph||'')}">`;return h}).join('');
+ m.innerHTML=`<div class="dlg" role="dialog" aria-modal="true"><h3>${esc(o.title)}</h3>${o.msg?`<p>${esc(o.msg)}</p>`:''}${f}<div class="row end"><button class="btn g" data-d="0">${esc(o.cancel||'Reka')}</button><button class="btn ${o.danger?'d':''}" data-d="1">${esc(o.ok||'Emeza')}</button></div></div>`;
+ m.classList.add('on');const first=m.querySelector('[data-f]');if(first)first.focus();
+ const close=v=>{m.classList.remove('on');m.innerHTML='';m.onclick=null;res(v)};
+ m.onclick=e=>{const b=e.target.closest('[data-d]');if(b){if(b.dataset.d=='1'){const v={};m.querySelectorAll('[data-f]').forEach(x=>v[x.dataset.f]=x.value);close(v)}else close(null)}else if(e.target===m)close(null)}})}
+const sure=(title,msg,ok='Siba')=>dlg({title,msg,ok,danger:true});
+/* ---------- ibikoresho by'amashusho ---------- */
+const card=(h,inner,cls='')=>`<div class="card ${cls}">${h?`<h2>${h}</h2>`:''}${inner}</div>`;
+const stat=(v,l,c='')=>`<div class="stat"><b class="${c}">${v}</b><span>${l}</span></div>`;
+const sel=(key,opts,cur,ph,rr=true)=>`<select data-g="${key}" ${rr?'data-rr':''}>${ph?`<option value="">${esc(ph)}</option>`:''}${opts.map(o=>`<option value="${esc(o[0])}" ${String(o[0])==String(cur)?'selected':''}>${esc(o[1])}</option>`).join('')}</select>`;
+const pwRow=ids=>`<label class="pwrow"><input type="checkbox" data-c="showpw" data-t="${ids}"> Erekana ijambobanga ndeba ibyo nanditse</label>`;
+const isMq=(k,id)=>D.moneyreq?.[k+'_'+id];
+const myMsgs=()=>rows('msg').filter(m=>m.to==uid||m.from==uid);
+const seenM=()=>ls.get('ep_sm_'+uid,{});
+const unreadAnn=()=>{const s=ls.get('ep_sa_'+uid,0);return rows('ann').filter(a=>a.ts>s&&a.uid!=uid).length};
+const unreadThread=p=>{const s=seenM();return myMsgs().filter(m=>m.to==uid&&m.from==p&&m.ts>(s[p]||0)).length};
+const unreadMsg=()=>{const s=seenM();return myMsgs().filter(m=>m.to==uid&&m.ts>(s[m.from]||0)).length};
+const unreadCom=()=>unreadAnn()+unreadMsg();
+function badge(t){let n=0;if(t=='com')n=unreadCom();else if(t=='att'&&boss())n=rows('attreq').length;else if(t=='fin'&&boss())n=rows('moneyreq').length;return n}
+function initSeen(){if(ls.get('ep_sa_'+uid,null)===null)ls.set('ep_sa_'+uid,Date.now());if(ls.get('ep_sm_'+uid,null)===null)ls.set('ep_sm_'+uid,{})}
+
+/* ---------- tabs ---------- */
+function tabs(){if(!activeUser())return[];const r=role();let t;
+ if(r=='dev')t=['dash','com','staff','stu','att','gr','plan','fin','mod','me'];
+ else if(r=='director')t=['dash','com','staff','stu','att','gr','plan','fin','me'];
+ else if(r=='teacher')t=['com',M().ct?'att':'','gr','plan','fin','me'].filter(Boolean);
+ else t=['fin','com','me'];
+ if(canSt()&&!t.includes('stu'))t.splice(t.indexOf('me'),0,'stu');return t}
+function quick(){const t=tabs(),pr=boss()?['dash','com','att','fin','gr']:role()=='teacher'?['com','att','gr','fin','plan']:['fin','com'];return pr.filter(x=>t.includes(x)).slice(0,4)}
+
+/* ---------- Incamake ---------- */
+const V={};
+V.dash=()=>{const st=rows('st'),p=pays().filter(x=>D.st?.[x.sid]),tp=p.reduce((a,x)=>a+(+x.amt||0),0),te=exps().reduce((a,x)=>a+(+x.amt||0),0),f=st.reduce((a,s)=>a+(+s.fee||0),0),ab=atts().filter(a=>a.date==today()).reduce((n,a)=>n+(a.ab||[]).length,0),ra=rows('attreq').length,rm=rows('moneyreq').length;
+ let h=card('',`<small>${esc(tl(TERM()))}</small><div class="stats" style="margin-top:8px">${stat(st.length,'Abanyeshuri')}${stat(vis().length,'Abakozi')}${stat(ab,'Abataje uyu munsi','bad')}${stat(money(tp-te),'Asigaye muri caisse')}${stat(money(tp),'Yakiriwe')}${stat(money(Math.max(f-tp,0)),'Ataratangwa','bad')}</div>`);
+ if(ra||rm)h+=card('Ibigutegereje',`${ra?`<div class="it row"><span>${ra} basabye gukosora abahari</span><button class="btn sm" data-a="go" data-t="att">Reba</button></div>`:''}${rm?`<div class="it row"><span>${rm} basabye guhindura amafaranga</span><button class="btn sm" data-a="go" data-t="fin">Reba</button></div>`:''}`);
+ h+=card('Gukuramo amakuru (CSV)',`<div class="row wrap nf"><button class="btn g sm" data-a="csv" data-k="st">Abanyeshuri</button><button class="btn g sm" data-a="csv" data-k="gr">Amanota</button><button class="btn g sm" data-a="csv" data-k="pay">Yakiriwe</button><button class="btn g sm" data-a="csv" data-k="exp">Yatetswe</button><button class="btn g sm" data-a="csv" data-k="unpaid">Abatarishyura</button></div>${isDev()?'<button class="btn g sm" style="margin-top:8px" data-a="bk">Backup yose (JSON)</button>':''}`);
+ return h};
+
+/* ---------- Itumanaho ---------- */
+V.com=()=>{const sub=G.cs||'ann',ua=unreadAnn(),um=unreadMsg();
+ return `<div class="seg"><button class="${sub=='ann'?'on':''}" data-a="cs" data-t="ann">Amatangazo${ua?`<span class="bd">${ua}</span>`:''}</button><button class="${sub=='msg'?'on':''}" data-a="cs" data-t="msg">Ubutumwa${um?`<span class="bd">${um}</span>`:''}</button></div>`+(sub=='ann'?vAnn():vMsg())};
+function posterCard(){const P=D.set?.main?.posters||[],cand=vis().filter(s=>['teacher','acct','director'].includes(s.role)&&!s.off),n=P.filter(x=>cand.some(c=>c.id==x)).length;
+ return card('Abatanga amatangazo',`<small>Hitamo abantu bagera kuri ${MAXP} bemerewe gutangaza (${n}/${MAXP}). Abandi basoma gusa.</small><div style="margin-top:6px">${cand.map(s=>`<label class="it" style="display:flex;gap:10px;align-items:center;cursor:pointer"><input type="checkbox" data-c="poster" data-id="${s.id}" ${P.includes(s.id)?'checked':''}>${av(s.id,'s')}<span>${esc(s.name)} <small>${RL[s.role]}</small></span></label>`).join('')||'<div class="empty">Nta bakozi bo guhitamo.</div>'}</div>`)}
+function composeCard(){const chip=(f,k,i,ico)=>`<span class="chip">${ic(ico,'s')}&nbsp;${esc(f.name)}<button class="lk" data-a="rmPF" data-k="${k}" data-i="${i}" aria-label="Kuraho">✕</button></span>`;
+ return card('Tangaza',`<textarea data-g="annT" placeholder="Andika itangazo…">${esc(G.annT||'')}</textarea><div class="pick">${PF.photos.map((f,i)=>chip(f,'photos',i,'image')).join('')}${PF.docs.map((f,i)=>chip(f,'docs',i,'file')).join('')}</div><div class="row wrap nf"><label class="btn g sm" for="annPh">${ic('image','s')} Ifoto</label></div><input id="annPh" type="file" accept="image/*" multiple hidden data-c="pickPh"><small>Amafoto agera kuri 3.</small><div id="prog" class="mu">${esc(G.prog||'')}</div><button class="btn full" style="margin-top:6px" data-a="postA" ${G.posting?'disabled':''}>${ic('send','s')} ${G.posting?'Birimo koherezwa…':'Ohereza'}</button>`)}
+function vAnn(){const s0=G.annSeen??ls.get('ep_sa_'+uid,0),all=rows('ann'),n=G.annN||15,okUrl=u=>/^https:\/\//.test(u||'');
+ const item=a=>`<article class="card ${a.ts>s0&&a.uid!=uid?'new':''}"><div class="hd">${av(a.uid)}<div><b>${esc(a.by)}</b><small>${fmtT(a.ts)}</small></div>${boss()||a.uid==uid?`<button class="lk bad" data-a="delA" data-id="${a.id}">Siba</button>`:''}</div>${a.text?`<p class="pre">${esc(a.text)}</p>`:''}${(a.imgs||[]).length?`<div class="gal">${a.imgs.map(u=>`<img src="${esc(u)}" alt="Ifoto y'itangazo" data-a="lb">`).join('')}</div>`:''}${(a.files||[]).map(f=>`<a class="file" href="${okUrl(f.url)?esc(f.url):'#'}" target="_blank" rel="noopener">${ic('file')}<span>${esc(f.name)}</span><small>${sizeTxt(f.size||0)}</small></a>`).join('')}</article>`;
+ const list=all.slice(0,n).map(item).join('')||'<div class="card empty">Nta matangazo ariho.</div>';
+ return (boss()?posterCard():'')+(canPost()?composeCard():'')+list+(all.length>n?'<button class="btn g full" data-a="moreA">Ongera urebe</button>':'')}
+function vMsg(){if(G.mt)return thread(G.mt);
+ const map={};myMsgs().forEach(x=>{const p=x.from==uid?x.to:x.from;(map[p]=map[p]||[]).push(x)});
+ const ps=Object.keys(map).sort((a,b)=>map[b][0].ts-map[a][0].ts),opts=vis().filter(s=>s.id!=uid&&!s.off).map(s=>[s.id,s.name+' ('+RL[s.role]+')']);
+ return card('Ikiganiro gishya',`${sel('mnew',opts,G.mnew,'Hitamo umukozi',false)}<button class="btn full" data-a="newT">Tangira</button>`)+card('Ibiganiro',ps.map(p=>`<div class="it"><button class="lk" style="display:flex;gap:10px;align-items:center;width:100%;text-align:left;color:var(--ink)" data-a="openT" data-id="${p}">${av(p)}<span style="flex:1;min-width:0"><b>${esc(nm(p))}</b><br><small>${esc(String(map[p][0].text).slice(0,60))}</small></span><small>${fmt(map[p][0].ts)}</small>${unreadThread(p)?'<span class="dot"></span>':''}</button></div>`).join('')||'<div class="empty">Nta butumwa. Tangiza ikiganiro hejuru.</div>')}
+function thread(p){const m=myMsgs().filter(x=>x.from==p||x.to==p).sort((a,b)=>a.ts-b.ts);
+ return `<div class="card"><div class="hd"><button class="ib" data-a="backT" aria-label="Subira">${ic('back')}</button>${av(p)}<div><b>${esc(nm(p))}</b></div></div><div class="thr" id="thr">${m.map(x=>`<div class="bub ${x.from==uid?'me':''}">${esc(x.text)}<small>${fmtT(x.ts)}</small></div>`).join('')||'<div class="empty">Tangira ikiganiro.</div>'}</div><textarea data-g="mx" rows="2" placeholder="Andika ubutumwa…">${esc(G.mx||'')}</textarea><button class="btn full" data-a="sendM">${ic('send','s')} Ohereza</button></div>`}
+
+/* ---------- Abakozi ---------- */
+function teacherBits(s){const sid=s.id;
+ return `<label class="fl">Umwarimu w'ishuri (class teacher)</label><select data-c="sCt" data-id="${sid}"><option value="">Si class teacher</option>${CL.map(c=>`<option ${c==s.ct?'selected':''}>${c}</option>`).join('')}</select><label class="fl">Amasomo yigisha</label><div>${(s.as||[]).map(x=>`<span class="chip">${esc(x.replace('|',' • '))}<button class="lk" data-a="rmAs" data-id="${sid}" data-v="${esc(x)}" aria-label="Kuraho">✕</button></span>`).join('')||'<small>Nta somo ryahawe.</small>'}</div><div class="row" style="margin-top:6px"><select id="ac_${sid}">${CL.map(c=>`<option>${c}</option>`).join('')}</select><select id="as_${sid}">${SUB.map(c=>`<option>${esc(c)}</option>`).join('')}</select></div><button class="btn g sm" data-a="addAs" data-id="${sid}">Ongeraho isomo</button>`}
+function staffCard(s){const sid=s.id,lock=s.role=='director'&&!isDev(),ro=['teacher','acct'].concat(isDev()?['director']:[]);
+ return `<div class="card"><div class="hd">${av(sid)}<div><input value="${esc(s.name)}" data-c="sName" data-id="${sid}" ${lock?'disabled':''} style="margin:0" aria-label="Amazina"><small>${esc(s.email||'')}${s.off?' • konti ifunze':''}</small></div></div>${lock?`<span class="tag">${RL[s.role]}</span>`:`<label class="fl">Uruhare</label><select data-c="sRole" data-id="${sid}">${ro.map(r=>`<option value="${r}" ${r==s.role?'selected':''}>${RL[r]}</option>`).join('')}</select>`}${s.role=='teacher'&&!lock?teacherBits(s):''}${!lock&&sid!=uid?`<div class="row nf wrap" style="margin-top:8px"><button class="btn g sm" data-a="sOff" data-id="${sid}">${s.off?'Fungura konti':'Funga konti'}</button><button class="btn d sm" data-a="sDel" data-id="${sid}">Siba</button></div>`:''}</div>`}
+V.staff=()=>{const L=vis(),rest=L,dl0=D.set?.main?.delegate||'';
+ return card('Ongeraho umukozi',`<input data-g="un" placeholder="Amazina" value="${esc(G.un||'')}"><input data-g="ue" type="email" autocomplete="off" placeholder="Imeri" value="${esc(G.ue||'')}"><input data-g="up" type="text" autocomplete="off" placeholder="Ijambobanga rya mbere (≥ 6)" value="${esc(G.up||'')}">${sel('ur',[['teacher','Umwarimu'],['acct','Umucungamutungo']].concat(isDev()?[['director','Umuyobozi']]:[]),G.ur||'teacher',null,false)}<small>Umukozi azasabwa guhindura iri jambobanga ubwa mbere yinjiye.</small><button class="btn full" style="margin-top:8px" data-a="addStaff">Ongeraho</button>`)
+ +card('Uwemerewe kongera/gusiba abanyeshuri',`<small>Umuyobozi na Moderator bemerewe buri gihe. Hitamo undi muntu umwe niba ushaka.</small><select data-c="delegate"><option value="">Nta wundi</option>${L.filter(s=>['teacher','acct'].includes(s.role)).map(s=>`<option value="${s.id}" ${dl0==s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select>`)
+ +`<h2 style="margin:6px 2px 8px">Abakozi (${rest.length})</h2>`+(rest.map(staffCard).join('')||'<div class="card empty">Nta bakozi.</div>')};
+
+/* ---------- Abanyeshuri ---------- */
+V.stu=()=>{const c=G.sc||'P4';
+ return card('Ongeraho umunyeshuri',`<input data-g="sn" placeholder="Amazina yose" value="${esc(G.sn||'')}">${sel('sc',CL.map(x=>[x,x]),c)}<input data-g="sf" type="number" min="0" inputmode="numeric" placeholder="School fees (FRw)" value="${esc(G.sf??150000)}"><button class="btn full" data-a="addSt">Bika</button>`)
+ +card(`${esc(c)} (${stIn(c).length})`,stIn(c).map(s=>`<div class="it row"><div style="flex:1;min-width:0">${esc(s.name)}<br><small>${money(s.fee)}</small></div><div class="row nf"><button class="lk" data-a="editSt" data-id="${s.id}">Hindura</button><button class="lk bad" data-a="delSt" data-id="${s.id}">Siba</button></div></div>`).join('')||'<div class="empty">Nta munyeshuri.</div>')};
+
+/* ---------- Abahari ---------- */
+function attDraft(k,ex){const g=(G.at=G.at||{});if(!g[k])g[k]={ab:[...(ex.ab||[])],re:{...(ex.re||{})}};return g[k]}
+V.att=()=>{const cl=boss()?CL:[M().ct].filter(Boolean);if(!cl.length)return card('Abahari','<div class="empty">Nta shuri ufite nka class teacher. Baza Umuyobozi.</div>');
+ const c=cl.includes(G.ac)?G.ac:cl[0],d=G.ad||today(),k=d+'_'+c,ex=D.att?.[k]||D.attreq?.[k]||{},dr=attDraft(k,ex),L=stIn(c),all=atts().filter(a=>a.cls==c),pc=all.length&&L.length?Math.round(100-all.reduce((n,a)=>n+(a.ab||[]).length,0)/(all.length*L.length)*100):100,old=d!=today()&&!boss(),rq=boss()?rows('attreq'):[];
+ return (rq.length?card('Abasabye gukosora abahari',rq.map(r=>`<div class="it"><b>${esc(r.cls)}</b> • ${esc(r.date)} • ${esc(nm(r.by))}<br><small>${(r.ab||[]).length} badahari</small><div class="row nf" style="margin-top:6px"><button class="btn sm" data-a="okReq" data-id="${esc(r.id)}">Emeza</button><button class="btn g sm" data-a="noReq" data-id="${esc(r.id)}">Anga</button></div></div>`).join('')):'')
+ +card('Abahari',`${sel('ac',cl.map(x=>[x,x]),c)}<input type="date" data-g="ad" data-rr value="${esc(d)}" max="${today()}">${old?'<small class="bad">Itariki ya kera: bizoherezwa Umuyobozi kugira ngo abyemeze.</small><br>':''}${D.attreq?.[k]&&!boss()?'<small>Icyifuzo gitegereje kwemezwa.</small><br>':''}<small>Impuzandengo y'abahari muri ${esc(c)}: <b>${pc}%</b> (iminsi ${all.length})</small>${L.map(s=>{const ab=dr.ab.includes(s.id);return `<div class="it"><label style="display:flex;gap:10px;align-items:center;cursor:pointer"><input type="checkbox" data-c="atTick" data-id="${s.id}" data-k="${esc(k)}" ${ab?'':'checked'}>${esc(s.name)}</label>${ab?`<select data-c="atRe" data-id="${s.id}" data-k="${esc(k)}" style="margin:6px 0 0"><option value="">Impamvu (niba adahari)</option>${REASONS.map(r=>`<option ${dr.re[s.id]==r?'selected':''}>${esc(r)}</option>`).join('')}</select>`:''}</div>`}).join('')||'<div class="empty">Nta banyeshuri.</div>'}<small>✓ = ahari. Utashyizweho ✓ afatwa ko adahari.</small><button class="btn full" style="margin-top:8px" data-a="saveAt">${old?'Saba kwemezwa':'Bika abahari'}</button>`)};
+
+/* ---------- Amanota ---------- */
+V.gr=()=>{const cl=myCls();if(!cl.length)return card('Amanota','<div class="empty">Nta shuri uhawe. Baza Umuyobozi.</div>');
+ const c=cl.includes(G.gc)?G.gc:cl[0],mine=mySub(c),ct=!boss()&&M().ct==c,ss=(boss()||ct)?SUB:mine,s=ss.includes(G.gs)?G.gs:(mine[0]||ss[0]);
+ if(!s)return card('Amanota',`${sel('gc',cl.map(x=>[x,x]),c)}<div class="empty">Nta somo uhawe muri iri shuri.</div>`);
+ const assigned=boss()||mine.includes(s),uk=unlKey(c,s),unl=!!D.unlock?.[uk]?.on,L=stIn(c),canE=x=>assigned&&(boss()||unl||!grOf(x.id,s)),any=L.some(canE),has=L.some(x=>grOf(x.id,s)),val=(x,i)=>{const dv=G.mk?.[uk+':'+x.id+':'+i];return dv!==undefined?dv:(grOf(x.id,s)?.[i]??'')};
+ return card(`Amanota ${esc(tl(TERM()))} (5 × 20 = 100)`,`<div class="row">${sel('gc',cl.map(x=>[x,x]),c)}${sel('gs',ss.map(x=>[x,x]),s)}</div>${!assigned?'<small class="warn">Iri somo ntiriri ryawe: ushobora kurisoma gusa.</small><br>':''}${assigned&&has&&!boss()&&!unl?'<small class="bad">Amanota yabitswe. Saba Umuyobozi uruhushya rwo kuyahindura.</small><br>':''}${boss()&&has?`<button class="btn g sm" data-a="unl" data-k="${esc(uk)}" style="margin:4px 0 8px">${unl?'Funga guhindura':'Emerera abarimu guhindura'}</button>`:''}<div class="sc"><table><tr><th>Izina</th>${[1,2,3,4,5].map(i=>`<th>A${i}/20</th>`).join('')}<th>Yose/100</th><th>Impuzandengo</th></tr>${L.map(x=>`<tr><td>${esc(x.name)}</td>${[0,1,2,3,4].map(i=>`<td><input class="mk" type="number" inputmode="decimal" min="0" max="20" step="any" data-k="${esc(uk)}:${x.id}:${i}" value="${esc(val(x,i))}" ${canE(x)?'':'disabled'} aria-label="A${i+1} ${esc(x.name)}"></td>`).join('')}<td><b>${grTot(x.id,s)}</b></td><td>${grAvg(x.id)}</td></tr>`).join('')}</table></div><small>Impuzandengo = iy'amasomo yose ya buri munyeshuri.</small><br><b>Impuzandengo y'ishuri muri ${esc(s)}: ${L.length?Math.round(L.reduce((a,x)=>a+grTot(x.id,s),0)/L.length):0}/100</b>${any?'<button class="btn full" style="margin-top:8px" data-a="saveGr">Bika amanota</button>':''}`)};
+
+/* ---------- Gahunda z'amasomo ---------- */
+V.plan=()=>{const cl=myCls(),c=cl.includes(G.pc)?G.pc:cl[0],ss=c?mySub(c):[],s=ss.includes(G.ps)?G.ps:ss[0],d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-(d.getDay()+6)%7);const w0=d.getTime(),pl=rows('plan'),canUp=role()=='teacher'||isDev();
+ const prog=u=>(D.staff?.[u]?.as||[]).map(k=>{const n=pl.filter(p=>p.by==u&&p.cls+'|'+p.sub==k&&p.ts>=w0).length;return `<div>${esc(k.replace('|',' • '))}: <b class="${n>=3?'ok':'bad'}">${n}/3 iki cyumweru</b></div>`}).join('')||'<small>Nta somo ryahawe.</small>';
+ let h='';
+ if(canUp)h+=card("Ohereza ifoto y'ibyo wateguye",(!c||!s)?'<div class="empty">Nta shuri cyangwa isomo uhawe. Baza Umuyobozi.</div>':`<div class="row">${sel('pc',cl.map(x=>[x,x]),c)}${sel('ps',ss.map(x=>[x,x]),s)}</div><input data-g="pt" placeholder="Insanganyamatsiko" value="${esc(G.pt||'')}"><label class="fl">Ifoto (galeri cyangwa kamera)</label><div class="row wrap nf"><label class="btn g sm" for="plG">${ic('image','s')} Hitamo muri galeri</label><label class="btn g sm" for="plC">Fata ifoto</label></div><input id="plG" type="file" accept="image/*" hidden data-c="pickPlan"><input id="plC" type="file" accept="image/*" capture="environment" hidden data-c="pickPlan">${PF.plan?`<div class="pick"><span class="chip">${esc(PF.plan.name)}<button class="lk" data-a="rmPlan" aria-label="Kuraho">✕</button></span></div>`:''}<button class="btn full" data-a="upPlan" ${G.upl?'disabled':''}>${G.upl?'Birimo koherezwa…':'Ohereza'}</button>${boss()?'':'<div style="margin-top:10px">'+prog(uid)+'</div>'}`);
+ if(boss())h+=card('Iki cyumweru: abarimu bose',rows('staff').filter(s0=>s0.role=='teacher'&&!s0.gone).map(s0=>`<div class="it"><b>${esc(s0.name)}</b>${prog(s0.id)}</div>`).join('')||'<div class="empty">Nta barimu.</div>');
+ return h+(pl.slice(0,30).map(p=>`<div class="card"><b>${esc(p.cls)} • ${esc(p.sub)}: ${esc(p.title)}</b><br><small>${esc(nm(p.by))} • ${fmt(p.ts)}</small><img class="ph" src="${esc(p.img)}" alt="Gahunda y'isomo" data-a="lb" style="margin-top:8px"></div>`).join('')||'')};
+
+/* ---------- Amafaranga ---------- */
+function finTeacher(p){const cl=myCls();if(!cl.length)return card('Amafaranga','<div class="empty">Nta shuri uhawe. Baza Umuyobozi.</div>');
+ const c=cl.includes(G.fc)?G.fc:cl[0],L=stIn(c),mine=p.filter(x=>x.cls==c&&x.by==uid),t=mine.reduce((a,x)=>a+(+x.amt||0),0),fs=L.some(s=>s.id==G.fs)?G.fs:'';
+ return card(`Amafaranga nakiriye (${esc(tl(TERM()))})`,`${sel('fc',cl.map(x=>[x,x]),c)}${sel('fs',L.map(s=>[s.id,s.name+' • wakiriye '+money(mine.filter(x=>x.sid==s.id).reduce((a,x)=>a+(+x.amt||0),0))]),fs,'Hitamo umunyeshuri',false)}<input data-g="fa" type="number" min="1" inputmode="numeric" placeholder="Umubare (FRw)" value="${esc(G.fa||'')}"><button class="btn full" data-a="addPay">Andika</button>`)
+ +card(`Yose muri ${esc(c)}: ${money(t)}`,`<small>Impuzandengo ku munyeshuri: ${money(L.length?t/L.length:0)}</small>${mine.slice(0,10).map(x=>`<div class="it">${esc(D.st?.[x.sid]?.name||'?')}: <b>${money(x.amt)}</b> <small>${fmt(x.ts)}</small></div>`).join('')}`)}
+V.fin=()=>{const r=role(),p=pays().filter(x=>D.st?.[x.sid]);if(r=='teacher')return finTeacher(p);
+ const e=exps(),tp=p.reduce((a,x)=>a+(+x.amt||0),0),te=e.reduce((a,x)=>a+(+x.amt||0),0),pm=r=='acct'||r=='dev',st=rows('st'),cls=CL.filter(c=>stIn(c).length),uc=cls.includes(G.uc)?G.uc:cls[0];
+ const mact=(k,x)=>{if(!pm)return '';const q=isMq(k,x.id);if(isDev()||!q)return `<button class="lk" data-a="mEdit" data-k="${k}" data-id="${x.id}">Hindura</button><button class="lk bad" data-a="mDel" data-k="${k}" data-id="${x.id}">Siba</button>`;return `<span class="tag w">Itegereje kwemezwa</span><button class="lk bad" data-a="noMq" data-id="${k}_${x.id}">Kuraho icyifuzo</button>`};
+ let h=card('',`<small>${esc(tl(TERM()))}</small><div class="stats" style="margin-top:8px">${stat(money(tp),'Yakiriwe')}${stat(money(te),'Yatetswe')}${stat(money(tp-te),'Asigaye muri caisse')}${stat(money(Math.max(st.reduce((a,s)=>a+(+s.fee||0),0)-tp,0)),'Ataratangwa','bad')}</div>`);
+ const mq=rows('moneyreq');
+ if(boss()&&mq.length)h+=card(`Ibisabwa kwemezwa (${mq.length})`,mq.map(q=>`<div class="it"><b>${esc(q.label||'')}</b><br><small>${q.action=='edit'?`${money(q.oldAmt)} → ${money(q.newAmt)}${q.kind=='exp'&&q.newWhat!=q.oldWhat?' • '+esc(q.newWhat):''}`:'Gusiba '+money(q.oldAmt)}</small><br><small>Impamvu: ${esc(q.reason||'')} • ${esc(q.byName||'')} • ${fmtT(q.ts)}</small><div class="row nf" style="margin-top:6px"><button class="btn sm" data-a="okMq" data-id="${esc(q.id)}">Emeza</button><button class="btn g sm" data-a="noMq" data-id="${esc(q.id)}">Anga</button></div></div>`).join(''));
+ h+=card('Ishuri ku ishuri',`<div class="sc"><table><tr><th>Ishuri</th><th>Yakiriwe</th><th>Impuzandengo</th></tr>${cls.map(c=>{const t=p.filter(x=>x.cls==c).reduce((a,x)=>a+(+x.amt||0),0);return `<tr><td>${c}</td><td>${money(t)}</td><td>${money(t/stIn(c).length)}</td></tr>`}).join('')||'<tr><td colspan="3">Nta banyeshuri.</td></tr>'}</table></div>`);
+ if(uc){const U0=stIn(uc).map(s=>({s,b:(+s.fee||0)-paid(s.id)})).filter(x=>x.b>0).sort((a,b)=>b.b-a.b);h+=card('Abatarishyura',`${sel('uc',cls.map(x=>[x,x]),uc)}<small>Abasigaje muri ${esc(uc)}: <b>${U0.length}</b> • Yose hamwe: <b class="bad">${money(U0.reduce((a,x)=>a+x.b,0))}</b></small>${U0.map(x=>`<div class="it row"><span>${esc(x.s.name)}<br><small>Yishyuye ${money(paid(x.s.id))}</small></span><b class="bad" style="flex:0 0 auto">${money(x.b)}</b></div>`).join('')||'<div class="empty">Bose barishyuye.</div>'}`)}
+ if(pm)h+=card('Amafaranga yakiriwe',`${sel('fs',st.sort((a,b)=>String(a.name).localeCompare(String(b.name))).map(s=>[s.id,s.name+' ('+s.cls+') • asigaye '+money((+s.fee||0)-paid(s.id))]),G.fs,'Hitamo umunyeshuri',false)}<input data-g="fa" type="number" min="1" inputmode="numeric" placeholder="Umubare (FRw)" value="${esc(G.fa||'')}"><button class="btn full" data-a="addPay">Andika</button>`);
+ h+=card(pm?'Aheruka kwakirwa':'Amafaranga yakiriwe',p.slice(0,15).map(x=>`<div class="it">${esc(D.st[x.sid]?.name||'?')} <small>${esc(x.cls||'')} • yakiriwe na ${esc(nm(x.by))}</small><br><b>${money(x.amt)}</b> <small>${fmt(x.ts)}</small> ${mact('pay',x)}</div>`).join('')||'<div class="empty">Nta mafaranga yandikwa.</div>');
+ h+=card('Ibyo batetse',`${pm?`<input data-g="ew" placeholder="Byari ibiki? (urugero: ibiryo)" value="${esc(G.ew||'')}"><input data-g="ea" type="number" min="1" inputmode="numeric" placeholder="Umubare (FRw)" value="${esc(G.ea||'')}"><button class="btn full" data-a="addExp">Andika</button>`:''}${e.slice(0,15).map(x=>`<div class="it">${esc(x.what)}: <b class="bad">${money(x.amt)}</b> <small>${fmt(x.ts)}</small> ${mact('exp',x)}</div>`).join('')||'<div class="empty">Nta byatetswe.</div>'}`);
+ if(pm||boss())h+=card('Gukuramo (CSV)',`<div class="row wrap nf"><button class="btn g sm" data-a="csv" data-k="pay">Yakiriwe</button><button class="btn g sm" data-a="csv" data-k="exp">Yatetswe</button><button class="btn g sm" data-a="csv" data-k="unpaid">Abatarishyura</button></div>`);
+ return h};
+
+/* ---------- Konti yanjye ---------- */
+function pwCard(){return card('Hindura ijambobanga',`<input data-g="op" id="op" type="password" autocomplete="current-password" placeholder="Ijambobanga rya none" value="${esc(G.op||'')}"><input data-g="np" id="np" type="password" autocomplete="new-password" placeholder="Ijambobanga rishya (≥ 6)" value="${esc(G.np||'')}"><input data-g="rp" id="rp" type="password" autocomplete="new-password" placeholder="Subiramo ijambobanga rishya" value="${esc(G.rp||'')}">${pwRow('op,np,rp')}<button class="btn full" data-a="chPw">Hindura</button>`)}
+V.me=()=>{const m=M(),dev=isDev();
+ let h=card('Konti yanjye',`<div class="hd">${av(uid,'l')}<div><b>${esc(dev?'Moderator':m.name)}</b><small>${esc((U&&U.email)||'')} • ${RL[role()]}</small></div></div>${dev?'':`<label class="fl">Amazina</label><input data-g="pn" value="${esc(G.pn??m.name??'')}"><div class="row wrap nf"><button class="btn sm" data-a="saveName">Bika amazina</button><label class="btn g sm" for="phIn">Hindura ifoto</label>${m.photo?'<button class="btn g sm" data-a="rmPhoto">Kuraho ifoto</button>':''}</div><input id="phIn" type="file" accept="image/*" hidden data-c="setPhoto">`}`);
+ if(m.role=='teacher')h+=card("Amashuri n'amasomo",`<small>Bihindurwa n'Umuyobozi gusa.</small><div style="margin-top:6px">${m.ct?`<div>Class teacher: <b>${esc(m.ct)}</b></div>`:''}${(m.as||[]).map(x=>`<span class="chip" style="padding-right:11px">${esc(x.replace('|',' • '))}</span>`).join('')||'<div class="mu">Nta somo ryahawe.</div>'}</div>`);
+ h+=card('Notification',`<label class="pwrow" style="margin:0"><input type="checkbox" data-c="notif" ${ls.get('ep_notif',true)?'checked':''}> Menyesha ubutumwa n'amatangazo bishya (ijwi, kunyeganyega, no kuri computer)</label>`);
+ return h+pwCard()+`<button class="btn g full" data-a="out">${ic('out','s')} Sohoka</button>`};
+
+/* ---------- Moderator ---------- */
+V.mod=()=>card('Moderator: amakuru yose',`<div class="stats">${COLS.map(c=>stat(Object.keys(D[c]||{}).length,c)).join('')}</div><button class="btn g sm" style="margin-top:10px" data-a="bk">Backup yose (JSON)</button>`)
+ +card('Ubutumwa bwose',rows('msg').slice(0,60).map(m=>`<div class="it"><b>${esc(nm(m.from))} → ${esc(nm(m.to))}</b><br><span class="pre">${esc(m.text)}</span><br><small>${fmtT(m.ts)}</small></div>`).join('')||'<div class="empty">Nta butumwa.</div>')
+ +card('Ibyakozwe byose (log)',rows('log').slice(0,100).map(l=>`<div class="it"><b>${esc(l.who)}</b>: ${esc(l.act)} <small>${fmtT(l.ts)}</small></div>`).join('')||'<div class="empty">Nta cyakozwe.</div>');
+/* ---------- ikibazo cy'imiterere y'ahabanza (gate) ---------- */
+const gateHead=()=>`<div class="gh">${sun()}<img class="lg" src="${LOGO}" alt="EP KANYARUYONGA"><h1>EP KANYARUYONGA</h1></div>`;
+const gSplash=()=>gateHead()+`<div class="gc"><p class="mu" style="text-align:center">Birimo gufungura…</p>${U?'<div style="text-align:center"><button class="lk" data-a="out">Sohoka</button></div>':''}</div>`;
+const gLogin=()=>gateHead()+`<div class="gc card"><label class="fl" for="le">Imeri</label><input id="le" type="email" inputmode="email" autocomplete="username" data-enter="login" value="${esc(G.le||'')}"><label class="fl" for="lp">Ijambobanga</label><input id="lp" type="password" autocomplete="current-password" data-enter="login">${pwRow('lp')}<button id="loginBtn" class="btn full" data-a="login">Injira</button><div style="text-align:center;margin-top:8px"><button class="lk" data-a="forgot">Wibagiwe ijambobanga?</button></div></div>`;
+const gNone=()=>gateHead()+`<div class="gc card"><h2>Konti yawe ntiremewe</h2><p>Iyi imeri ntirashyirwa muri app. Baza Umuyobozi kugira ngo akongeremo.</p><small>${esc((U&&U.email)||'')}</small></div><div class="gc"><button class="btn g full" data-a="out">Sohoka</button></div>`;
+const gOff=()=>gateHead()+`<div class="gc card"><h2>Konti yafunzwe</h2><p>Baza Umuyobozi kugira ngo ayifungure.</p></div><div class="gc"><button class="btn g full" data-a="out">Sohoka</button></div>`;
+const gForced=()=>gateHead()+`<div class="gc card"><h2>Hindura ijambobanga rya mbere</h2><p>Ijambobanga wahawe n'Umuyobozi ni iry'agateganyo. Shyiraho irindi ryawe bwite kugira ngo ukomeze.</p><input id="op" data-g="op" type="password" autocomplete="current-password" placeholder="Ijambobanga wahawe" value="${esc(G.op||'')}"><input id="np" data-g="np" type="password" autocomplete="new-password" placeholder="Ijambobanga rishya (≥ 6)" value="${esc(G.np||'')}"><input id="rp" data-g="rp" type="password" autocomplete="new-password" data-enter="forcePw" placeholder="Subiramo ijambobanga rishya" value="${esc(G.rp||'')}">${pwRow('op,np,rp')}<button class="btn full" data-a="forcePw">Bika ijambobanga</button></div><div class="gc"><button class="btn g full" data-a="out">Sohoka</button></div>`;
+
+/* ---------- shell: menu, akabari ko hasi, umutwe ---------- */
+function shell(force){if(!activeUser())return;
+ const t=tabs(),q=quick(),n=unreadCom(),side=$('side');
+ document.title=(n?'('+n+') ':'')+'EP KANYARUYONGA';
+ $('top').innerHTML=`<button class="ib menu-b" data-a="menu" aria-label="Fungura menu">${ic('menu')}</button><h1>${esc((TB[tab]||TB.me)[0])}<small>${esc(tl(TERM()))}</small></h1><button class="ib" data-a="go" data-t="com" aria-label="Itumanaho">${ic('bell')}${n?`<span class="bd">${n}</span>`:''}</button>`;
+ $('bnav').innerHTML=q.map(k=>`<button class="${k==tab?'on':''}" data-a="go" data-t="${k}" aria-label="${esc(TB[k][0])}">${ic(TB[k][1])}<span class="t">${esc(TB[k][0])}</span>${badge(k)?`<span class="bd">${badge(k)}</span>`:''}</button>`).join('')+`<button data-a="menu" aria-label="Menu yose">${ic('more')}<span class="t">Ibindi</span></button>`;
+ const a=document.activeElement;if(!force&&a&&side.contains(a)&&a.tagName=='SELECT')return;
+ side.innerHTML=`<div class="sh">${sun()}<div class="who">${av(uid)}<div><b>${esc(isDev()?'Moderator':M().name||'')}</b><small>${isDev()?'Ububasha bwose':RL[role()]}</small></div></div>${boss()?`<select data-c="term" aria-label="Igihembwe">${TD.map(x=>`<option value="${x[0]}" ${x[0]==TERM()?'selected':''}>${esc(x[3])}</option>`).join('')}</select>`:`<small style="display:block;margin-top:8px;position:relative">${esc(tl(TERM()))}</small>`}</div><nav class="sn">${t.map(k=>`<button class="${k==tab?'on':''}" data-a="go" data-t="${k}">${ic(TB[k][1])}<span style="flex:1">${esc(TB[k][0])}</span>${badge(k)?`<span class="bd" style="position:static">${badge(k)}</span>`:''}</button>`).join('')}</nav><div class="sf"><button data-a="out">${ic('out')} Sohoka</button></div>`}
+function markSeen(){if(tab!='com')return;let ch=false;
+ if((G.cs||'ann')=='ann'){const mx=Math.max(0,...rows('ann').map(a=>a.ts||0));if(mx>ls.get('ep_sa_'+uid,0)){ls.set('ep_sa_'+uid,mx);ch=true}}
+ else if(G.mt){const s=seenM(),mx=Math.max(0,...myMsgs().filter(m=>m.from==G.mt).map(m=>m.ts||0));if(mx>(s[G.mt]||0)){s[G.mt]=mx;ls.set('ep_sm_'+uid,s);ch=true}}
+ if(ch)shell()}
+function renderView(){const t=tabs();if(!t.includes(tab))tab=t[0];$('view').innerHTML=V[tab]();const th=$('thr');if(th)th.scrollTop=th.scrollHeight;markSeen()}
+function typing(root){const a=document.activeElement;return !!(a&&root&&root.contains(a)&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!='checkbox'&&a.type!='file')}
+function render(force){
+ if(!force&&(typing($('view'))||typing($('gate')))){dirty=true;return}
+ dirty=false;const gate=$('gate'),app=$('app');
+ const showGate=h=>{app.classList.remove('on');gate.hidden=false;gate.innerHTML=h};
+ if(!authReady||(U&&!meLoaded)){showGate(gSplash());return}
+ if(!U){showGate(gLogin());return}
+ if(U&&D.me&&M().off){showGate(gOff());return}
+ if(!activeUser()){showGate(gNone());return}
+ if(M().mc&&!isDev()){showGate(gForced());return}
+ gate.hidden=true;gate.innerHTML='';app.classList.add('on');
+ const t=tabs();if(!t.includes(tab))tab=t[0];
+ shell(force);renderView()}
+document.addEventListener('focusout',()=>setTimeout(()=>{if(dirty&&!typing($('view'))&&!typing($('gate')))render()},150));
+
+/* ---------- ibyo gukanda no guhindura ---------- */
+const ACT={},CHG={};
+document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!el)return;const f=ACT[el.dataset.a];if(!f)return;if(el.tagName=='BUTTON')e.preventDefault();Promise.resolve().then(()=>f(el.dataset,el,e)).catch(fail)});
+document.addEventListener('change',e=>{const el=e.target,d=el.dataset;if(!d)return;
+ if(d.g){G[d.g]=el.type=='checkbox'?el.checked:el.value;if('rr' in d)render(true)}
+ if(d.c&&CHG[d.c])Promise.resolve().then(()=>CHG[d.c](el.value,el,d)).catch(fail)});
+document.addEventListener('input',e=>{const el=e.target,d=el.dataset;if(!d)return;if(d.g&&el.type!='checkbox'&&el.type!='file')G[d.g]=el.value;if(el.classList&&el.classList.contains('mk')){(G.mk=G.mk||{})[d.k]=el.value}});
+document.addEventListener('keydown',e=>{if(e.key=='Enter'&&!e.shiftKey&&e.target.dataset&&e.target.dataset.enter&&ACT[e.target.dataset.enter]){e.preventDefault();Promise.resolve().then(()=>ACT[e.target.dataset.enter]({})).catch(fail)}
+ if(e.key=='Escape'){closeMenu();const lb=$('lb');if(lb)lb.classList.remove('on')}});
+function closeMenu(){const s=$('side'),c=$('scrim');if(s)s.classList.remove('open');if(c)c.classList.remove('on')}
+ACT.menu=()=>{const s=$('side'),o=!s.classList.contains('open');s.classList.toggle('open',o);$('scrim').classList.toggle('on',o)};
+ACT.closeMenu=closeMenu;
+ACT.go=d=>{tab=d.t;if(tab=='com'){G.annSeen=ls.get('ep_sa_'+uid,0);G.mt=null}closeMenu();render(true);window.scrollTo(0,0)};
+ACT.out=async()=>{if(await dlg({title:'Sohoka muri app?',ok:'Sohoka'}))await run(()=>FB.auth.out())};
+ACT.lb=(d,el)=>{const i=document.createElement('img');i.src=el.src;i.alt='';$('lb').replaceChildren(i);$('lb').classList.add('on')};
+ACT.lbx=()=>{$('lb').classList.remove('on')};
+CHG.showpw=(v,el,d)=>{d.t.split(',').forEach(id=>{const x=$(id);if(x)x.type=el.checked?'text':'password'})};
+
+/* ---------- kwinjira / ijambobanga ---------- */
+ACT.login=async()=>{const e=($('le').value||'').trim(),p=$('lp').value;if(!e||!p)return toast("Andika imeri n'ijambobanga.",'bad');G.le=e;const b=$('loginBtn');if(b)b.disabled=true;try{await FB.auth.signIn(e,p)}catch(x){fail(x);const b2=$('loginBtn');if(b2)b2.disabled=false}};
+ACT.forgot=async()=>{const e=($('le').value||'').trim();if(!e)return toast('Andika imeri mbere.','bad');await run(()=>FB.auth.reset(e),'Reba imeri yawe (reba no muri spam).')};
+async function doChPw(){const o=G.op||'',n=G.np||'',r=G.rp||'';
+ if(!o)return toast('Andika ijambobanga rya none.','bad'),false;if(n.length<6)return toast('Ijambobanga rishya rigire nibura inyuguti 6.','bad'),false;if(n!==r)return toast('Ijambobanga ryombi ntirihuye. Subiramo neza.','bad'),false;if(n===o)return toast('Ijambobanga rishya rigomba kuba irindi.','bad'),false;
+ try{await FB.auth.changePw(o,n)}catch(e){toast(e.code=='auth/wrong-password'||e.code=='auth/invalid-credential'?'Ijambobanga rya none si ryo.':failMsg(e),'bad');return false}
+ G.op=G.np=G.rp='';return true}
+ACT.chPw=async()=>{if(await doChPw()){toast('Ijambobanga ryahinduwe','ok');render(true)}};
+ACT.forcePw=async()=>{if(await doChPw()){await run(()=>FB.upd('staff',uid,{mc:false}));toast('Ijambobanga ryahinduwe','ok');render(true)}};
+
+/* ---------- Itumanaho ---------- */
+ACT.cs=d=>{G.cs=d.t;G.mt=null;if(d.t=='ann')G.annSeen=ls.get('ep_sa_'+uid,0);render(true)};
+ACT.moreA=()=>{G.annN=(G.annN||15)+15;render(true)};
+ACT.rmPF=d=>{PF[d.k].splice(+d.i,1);render(true)};
+CHG.pickPh=(v,el)=>{const fs=[...el.files];el.value='';for(const f of fs){if(PF.photos.length>=3){toast('Amafoto agera kuri 3.','bad');break}if(!/^image\//.test(f.type)){toast(f.name+': si ifoto.','bad');continue}PF.photos.push(f)}render(true)};
+CHG.pickDoc=(v,el)=>{const fs=[...el.files];el.value='';for(const f of fs){if(PF.docs.length>=3){toast('Amafaile agera kuri 3.','bad');break}if(!DOCEXT.includes(extOf(f.name))){toast(f.name+': ubwoko ntiyemewe.','bad');continue}if(f.size>MAXFILE){toast(f.name+': irenze 8 MB.','bad');continue}PF.docs.push(f)}render(true)};
+CHG.poster=async(v,el,d)=>{if(!boss())return;const cand=vis().filter(s=>['teacher','acct','director'].includes(s.role)&&!s.off).map(s=>s.id),cur=new Set((D.set?.main?.posters||[]).filter(x=>cand.includes(x)));
+ if(el.checked){if(cur.size>=MAXP){el.checked=false;return toast('Abantu '+MAXP+' gusa.','bad')}cur.add(d.id)}else cur.delete(d.id);
+ if(await run(()=>FB.set('set','main',{posters:[...cur]},true)))log((el.checked?'Yemereye ':'Yakuyeho ')+nm(d.id)+' gutangaza amatangazo')};
+ACT.postA=async()=>{if(G.posting||!canPost())return;const t=(G.annT||'').trim();if(!t&&!PF.photos.length&&!PF.docs.length)return toast('Andika itangazo cyangwa wongereho ifoto/ifaile.','bad');
+ G.posting=true;render(true);const up=[];
+ try{const imgs=[];for(const f of PF.photos)imgs.push(await shrink(f,900,.6));if(imgs.join('').length>800000)throw new Error('Amafoto ni manini cyane. Ugabanye umubare.');
+  const files=[];let i=0;for(const f of PF.docs){i++;const path='ann/'+Date.now()+'_'+Math.random().toString(36).slice(2,8)+'_'+safeName(f.name),n=PF.docs.length,j=i;const url=await FB.upload(path,f,p=>{G.prog='Ifaile '+j+'/'+n+': '+Math.round(p)+'%';const el=$('prog');if(el)el.textContent=G.prog});up.push(path);files.push({name:f.name,size:f.size,url,path})}
+  await FB.add('ann',{text:t,by:dn(),uid,imgs,files,ts:Date.now()});log('Yatangaje itangazo');G.annT='';PF.photos=[];PF.docs=[];toast('Itangazo ryoherejwe','ok')}
+ catch(e){up.forEach(p=>FB.rmFile(p).catch(()=>{}));fail(e)}
+ G.posting=false;G.prog='';render(true)};
+ACT.delA=async d=>{const a=D.ann?.[d.id];if(!a)return;if(!await sure('Siba itangazo?','Itangazo rizavanwaho burundu.'))return;if(await run(()=>FB.del('ann',d.id),'Ryasibwe')){log('Yasibye itangazo');(a.files||[]).forEach(f=>f.path&&FB.rmFile(f.path).catch(()=>{}))}};
+ACT.newT=()=>{if(!G.mnew)return toast('Hitamo umukozi.','bad');G.mt=G.mnew;G.mnew='';render(true)};
+ACT.openT=d=>{G.mt=d.id;render(true)};
+ACT.backT=()=>{G.mt=null;render(true)};
+ACT.sendM=async()=>{const t=(G.mx||'').trim(),to=G.mt;if(!t||!to)return;if(await run(()=>A('msg',{to,from:uid,fname:dn(),text:t.slice(0,2000)}))){G.mx='';render(true)}};
+
+/* ---------- Abakozi ---------- */
+async function patch(id,p){const o=D.staff?.[id]||{},n={...o,...p};if('as' in p||'ct' in p)p.cl=derive(n.as,n.ct);return run(()=>FB.upd('staff',id,p))}
+ACT.addStaff=async()=>{const n=(G.un||'').trim(),e=(G.ue||'').trim().toLowerCase(),p=G.up||'',r=G.ur||'teacher';
+ if(!n||!e||p.length<6)return toast('Uzuza byose. Ijambobanga rigire nibura inyuguti 6.','bad');if(r=='director'&&!isDev())return;
+ try{const id=await FB.auth.createUser(e,p);await FB.set('staff',id,{name:n,email:e,role:r,as:[],cl:[],mc:true,ts:Date.now()});log('Yongeyeho umukozi '+n);G.un=G.ue=G.up='';toast('Umukozi yongeweho','ok');render(true)}catch(x){fail(x)}};
+CHG.sName=async(v,el,d)=>{const n=v.trim();if(!n){render(true);return}if(await patch(d.id,{name:n}))log('Yahinduye izina rya '+n)};
+CHG.sRole=async(v,el,d)=>{const s=D.staff?.[d.id];if(!s)return;if(v=='director'&&!isDev()){render(true);return}if(await patch(d.id,{role:v}))log('Yahinduye uruhare rwa '+s.name+' → '+RL[v])};
+CHG.sCt=async(v,el,d)=>{await patch(d.id,{ct:v})};
+ACT.sOff=async d=>{const s=D.staff?.[d.id];if(!s)return;if(await patch(d.id,{off:!s.off}))log((s.off?'Yafunguye konti ya ':'Yafunze konti ya ')+s.name)};
+ACT.sDel=async d=>{const s=D.staff?.[d.id];if(!s||!await sure('Siba '+s.name+'?','Uyu mukozi ntazongera kugaragara kandi konti ye izafungwa.'))return;if(await patch(d.id,{off:true,gone:true}))log('Yasibye umukozi '+s.name)};
+ACT.addAs=async d=>{const c=$('ac_'+d.id).value,s=$('as_'+d.id).value,v=c+'|'+s,a=D.staff?.[d.id]?.as||[];if(a.includes(v))return toast('Iri somo risanzwe riri aho.','bad');if(await patch(d.id,{as:[...a,v]}))log('Yahaye '+nm(d.id)+' isomo '+s+' ('+c+')')};
+ACT.rmAs=async d=>{await patch(d.id,{as:(D.staff?.[d.id]?.as||[]).filter(x=>x!=d.v)})};
+CHG.delegate=async v=>{if(await run(()=>FB.set('set','main',{delegate:v},true),'Byabitswe'))log('Yahisemo uwemerewe gusiba/kongera abanyeshuri: '+(v?nm(v):'nta wundi'))};
+CHG.term=async(v)=>{if(!boss())return;if(!TD.some(t=>t[0]==v))return;if(!await dlg({title:'Hindura igihembwe kuri abakozi BOSE?',msg:tl(v),ok:'Hindura'})){shell(true);return}if(await run(()=>FB.set('set','main',{term:v},true),'Igihembwe cyahinduwe'))log('Yashyizeho '+tl(v))};
+
+/* ---------- Abanyeshuri ---------- */
+const feeV=()=>G.sf===undefined?150000:Math.max(0,Math.round(+G.sf||0));
+ACT.addSt=async()=>{if(!canSt())return;const n=(G.sn||'').trim();if(!n)return toast("Andika amazina y'umunyeshuri.",'bad');if(await run(()=>A('st',{name:n,cls:G.sc||'P4',fee:feeV()}),'Yabitswe')){log('Yongeyeho umunyeshuri '+n);G.sn='';render(true)}};
+ACT.editSt=async d=>{if(!canSt())return;const o=D.st?.[d.id];if(!o)return;const v=await dlg({title:'Hindura umunyeshuri',ok:'Bika',fields:[{id:'n',label:'Amazina',value:o.name},{id:'c',label:'Ishuri',type:'select',opts:CL.map(x=>[x,x]),value:o.cls},{id:'f',label:'School fees (FRw)',type:'number',value:o.fee}]});if(!v)return;const n=v.n.trim();if(!n)return toast('Amazina ntashobora kuba ubusa.','bad');if(await run(()=>FB.upd('st',d.id,{name:n,cls:v.c,fee:Math.max(0,Math.round(+v.f||0))}),'Byabitswe'))log('Yahinduye umunyeshuri '+o.name)};
+ACT.delSt=async d=>{if(!canSt())return;const s=D.st?.[d.id];if(!s||!await sure('Siba '+s.name+'?','Amakuru ye y\'amafaranga ntazongera kubarwa.'))return;if(await run(()=>FB.del('st',d.id),'Yasibwe'))log('Yasibye umunyeshuri '+s.name)};
+
+/* ---------- Abahari ---------- */
+CHG.atTick=(v,el,d)=>{const dr=attDraft(d.k,D.att?.[d.k]||D.attreq?.[d.k]||{}),has=dr.ab.includes(d.id);if(el.checked&&has)dr.ab=dr.ab.filter(x=>x!=d.id);if(!el.checked&&!has)dr.ab.push(d.id);render(true)};
+CHG.atRe=(v,el,d)=>{const dr=attDraft(d.k,D.att?.[d.k]||D.attreq?.[d.k]||{});if(v)dr.re[d.id]=v;else delete dr.re[d.id]};
+ACT.saveAt=async()=>{const cl=boss()?CL:[M().ct].filter(Boolean),c=cl.includes(G.ac)?G.ac:cl[0];if(!c)return;const d=G.ad||today(),k=d+'_'+c,ex=D.att?.[k]||D.attreq?.[k]||{},dr=attDraft(k,ex),ids=stIn(c).map(s=>s.id),ab=dr.ab.filter(x=>ids.includes(x)),re={};ab.forEach(id=>{if(dr.re[id])re[id]=dr.re[id]});
+ const o={date:d,cls:c,by:uid,ab,re,term:TERM(),ts:Date.now()},old=d!=today()&&!boss();
+ if(old){if(await run(()=>FB.set('attreq',k,o),'Byoherejwe ngo Umuyobozi abyemeze')){log('Yasabye gukosora abahari '+c+' '+d);delete G.at[k];render(true)}}
+ else if(await run(()=>FB.set('att',k,o),'Byabitswe')){if(D.attreq?.[k])FB.del('attreq',k).catch(()=>{});log('Yanditse abahari '+c+' '+d);delete G.at[k];render(true)}};
+ACT.okReq=async d=>{const r=D.attreq?.[d.id];if(!r)return;if(await run(()=>FB.batch([{t:'set',c:'att',id:d.id,d:{...r,ts:Date.now()}},{t:'del',c:'attreq',id:d.id}]),'Byemejwe')){log('Yemeje abahari '+r.cls+' '+r.date);if(G.at)delete G.at[d.id]}};
+ACT.noReq=async d=>{const r=D.attreq?.[d.id];if(await run(()=>FB.del('attreq',d.id),'Byanzwe')){log('Yanze gukosora abahari '+(r?r.cls+' '+r.date:''));if(G.at)delete G.at[d.id]}};
+
+/* ---------- Amanota ---------- */
+function grCtx(){const cl=myCls();if(!cl.length)return null;const c=cl.includes(G.gc)?G.gc:cl[0],mine=mySub(c),ct=!boss()&&M().ct==c,ss=(boss()||ct)?SUB:mine,s=ss.includes(G.gs)?G.gs:(mine[0]||ss[0]);if(!s)return null;
+ const assigned=boss()||mine.includes(s),uk=unlKey(c,s),unl=!!D.unlock?.[uk]?.on,L=stIn(c);return{c,s,uk,assigned,unl,L,canE:x=>assigned&&(boss()||unl||!grOf(x.id,s))}}
+ACT.unl=async d=>{const on=!D.unlock?.[d.k]?.on;if(await run(()=>FB.set('unlock',d.k,{on},true),on?'Abarimu bemerewe guhindura':'Byafunzwe'))log((on?'Yemereye guhindura amanota ':'Yafunze amanota ')+d.k)};
+ACT.saveGr=async()=>{const x=grCtx();if(!x)return;const L=x.L.filter(x.canE);if(!L.length)return toast('Nta manota yo kubika.','bad');const si=SUB.indexOf(x.s),t=TERM();
+ const mk=(st)=>({sid:st.id,cls:x.c,sub:x.s,si:String(si),term:t,v:[0,1,2,3,4].map(i=>{const raw=G.mk?.[x.uk+':'+st.id+':'+i],cur=grOf(st.id,x.s)?.[i],val=raw!==undefined?raw:(cur??'');return Math.min(20,Math.max(0,Math.round((+val||0)*10)/10))}),ts:Date.now()});
+ if(await run(()=>Promise.all(L.map(st=>FB.set('gr',t+'_'+st.id+'_'+si,mk(st)))),'Amanota yabitswe')){
+  if(!boss()&&x.unl)await run(()=>FB.set('unlock',x.uk,{on:false},true));
+  Object.keys(G.mk||{}).filter(k=>k.startsWith(x.uk+':')).forEach(k=>delete G.mk[k]);log('Yanditse amanota '+x.c+' '+x.s+' '+tl(t));render(true)}};
+
+/* ---------- Gahunda z'amasomo ---------- */
+CHG.pickPlan=(v,el)=>{const f=el.files[0];el.value='';if(f){if(!/^image\//.test(f.type))toast('Hitamo ifoto.','bad');else PF.plan=f}render(true)};
+ACT.rmPlan=()=>{PF.plan=null;render(true)};
+ACT.upPlan=async()=>{if(G.upl)return;const cl=myCls(),c=cl.includes(G.pc)?G.pc:cl[0],ss=c?mySub(c):[],s=ss.includes(G.ps)?G.ps:ss[0],t=(G.pt||'').trim();
+ if(!c||!s||!t||!PF.plan)return toast("Uzuza byose: isomo, insanganyamatsiko n'ifoto.",'bad');
+ G.upl=true;render(true);
+ try{const img=await shrink(PF.plan,1000,.6);if(img.length>900000)throw new Error('Ifoto ni nini cyane.');await A('plan',{cls:c,sub:s,title:t,img,by:uid});log("Yohereje gahunda y'isomo "+c+' '+s);G.pt='';PF.plan=null;toast('Yoherejwe','ok')}catch(e){fail(e)}
+ G.upl=false;render(true)};
+
+/* ---------- Amafaranga ---------- */
+ACT.addPay=async()=>{const a=Math.round(+G.fa||0),s=D.st?.[G.fs];if(!s)return toast('Hitamo umunyeshuri.','bad');if(!(a>0))return toast('Andika umubare.','bad');if(role()=='teacher'&&!myCls().includes(s.cls))return toast('Ntiwemerewe iri shuri.','bad');
+ if(await run(()=>A('pay',{sid:G.fs,amt:a,by:uid,cls:s.cls,term:TERM()}),'Byanditswe')){log('Yakiriye '+money(a)+' kuri '+s.name);G.fa='';render(true)}};
+ACT.addExp=async()=>{const a=Math.round(+G.ea||0),w=(G.ew||'').trim();if(!w||!(a>0))return toast("Andika icyo byari bimaze n'umubare.",'bad');if(await run(()=>A('exp',{what:w,amt:a,by:uid,term:TERM()}),'Byanditswe')){log('Yatetse '+money(a)+': '+w);G.ea=G.ew='';render(true)}};
+ACT.mEdit=async d=>{const k=d.k,o=D[k]?.[d.id];if(!o)return;const isE=k=='exp',label=isE?o.what:(D.st?.[o.sid]?.name||'?'),fields=[{id:'a',label:'Umubare mushya (FRw)',type:'number',value:o.amt}];
+ if(isE)fields.unshift({id:'w',label:'Byari ibiki',value:o.what});if(!isDev())fields.push({id:'r',label:'Impamvu yo guhindura',type:'textarea',ph:'Sobanura impamvu'});
+ const v=await dlg({title:isDev()?'Hindura':'Saba guhindura',msg:isDev()?'':'Impinduka izakorwa Umuyobozi cyangwa Moderator nabyemeza.',ok:isDev()?'Bika':'Ohereza icyifuzo',fields});if(!v)return;
+ const a=Math.round(+v.a||0);if(!(a>0))return toast('Umubare si wo.','bad');const w=isE?String(v.w||'').trim():undefined;if(isE&&!w)return toast("Andika icyo byari bimaze.",'bad');
+ if(isDev()){if(await run(()=>FB.upd(k,d.id,clean({amt:a,what:w})),'Byahinduwe'))log('Yahinduye '+money(o.amt)+' → '+money(a)+' ('+label+')');return}
+ const r=String(v.r||'').trim();if(!r)return toast('Andika impamvu.','bad');
+ if(await run(()=>FB.set('moneyreq',k+'_'+d.id,clean({kind:k,tid:d.id,action:'edit',oldAmt:o.amt,newAmt:a,oldWhat:isE?o.what:undefined,newWhat:w,label,reason:r,by:uid,byName:dn(),ts:Date.now()})),'Icyifuzo cyoherejwe'))log('Yasabye guhindura '+money(o.amt)+' → '+money(a)+' ('+label+')')};
+ACT.mDel=async d=>{const k=d.k,o=D[k]?.[d.id];if(!o)return;const label=k=='exp'?o.what:(D.st?.[o.sid]?.name||'?');
+ if(isDev()){if(!await sure('Siba '+money(o.amt)+'?',label))return;if(await run(()=>FB.del(k,d.id),'Byasibwe'))log('Yasibye '+money(o.amt)+' ('+label+')');return}
+ const v=await dlg({title:'Saba gusiba',msg:label+' • '+money(o.amt),ok:'Ohereza icyifuzo',danger:true,fields:[{id:'r',label:'Impamvu yo gusiba',type:'textarea',ph:'Sobanura impamvu'}]});if(!v)return;const r=String(v.r||'').trim();if(!r)return toast('Andika impamvu.','bad');
+ if(await run(()=>FB.set('moneyreq',k+'_'+d.id,{kind:k,tid:d.id,action:'delete',oldAmt:o.amt,label,reason:r,by:uid,byName:dn(),ts:Date.now()}),'Icyifuzo cyoherejwe'))log('Yasabye gusiba '+money(o.amt)+' ('+label+')')};
+ACT.okMq=async d=>{const q=D.moneyreq?.[d.id];if(!q||!boss())return;const ops=q.action=='delete'?[{t:'del',c:q.kind,id:q.tid}]:[{t:'upd',c:q.kind,id:q.tid,d:q.kind=='exp'?{amt:q.newAmt,what:q.newWhat}:{amt:q.newAmt}}];ops.push({t:'del',c:'moneyreq',id:d.id});
+ if(await run(()=>FB.batch(ops),'Byemejwe'))log('Yemeje '+(q.action=='delete'?'gusiba ':'guhindura ')+money(q.oldAmt)+' ('+q.label+')')};
+ACT.noMq=async d=>{if(await run(()=>FB.del('moneyreq',d.id),'Icyifuzo cyakuweho'))log("Yanze cyangwa yakuyeho icyifuzo cy'amafaranga")};
+
+/* ---------- Konti / ifoto / notification ---------- */
+ACT.saveName=async()=>{const n=String(G.pn??M().name??'').trim();if(!n)return toast('Andika amazina.','bad');if(await run(()=>FB.upd('staff',uid,{name:n}),'Byabitswe')){G.pn=undefined;render(true)}};
+CHG.setPhoto=async(v,el)=>{const f=el.files[0];el.value='';if(!f)return;try{const p=await shrink(f,256,.75,true);await FB.upd('staff',uid,{photo:p});toast('Ifoto yabitswe','ok')}catch(e){fail(e)}};
+ACT.rmPhoto=async()=>{await run(()=>FB.upd('staff',uid,{photo:''}),'Ifoto yakuweho')};
+CHG.notif=(v,el)=>{ls.set('ep_notif',el.checked);if(el.checked&&window.Notification&&Notification.permission=='default'){try{Notification.requestPermission()}catch(e){}}};
+function notify(title,body){toast(title+(body?': '+body:''));if(!ls.get('ep_notif',true))return;try{if(navigator.vibrate)navigator.vibrate(120)}catch(e){}
+ if(document.hidden&&window.Notification&&Notification.permission=='granted'){try{new Notification(title,{body,icon:LOGO})}catch(e){}}}
+
+/* ---------- CSV / backup ---------- */
+ACT.csv=d=>{const k=d.k,q=v=>{let s=String(v??'');if(typeof v=='string'&&/^[=+\-@]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'};let L=[];
+ if(k=='st')L=[['Izina','Ishuri','Fees'],...rows('st').map(s=>[s.name,s.cls,s.fee])];
+ if(k=='gr')L=[['Izina','Ishuri','Isomo','A1','A2','A3','A4','A5','Yose'],...rows('st').flatMap(s=>SUB.filter(u=>grOf(s.id,u)).map(u=>[s.name,s.cls,u,...grOf(s.id,u),grTot(s.id,u)]))];
+ if(k=='pay')L=[['Itariki','Umunyeshuri','Ishuri','Umubare','Yakiriwe na'],...pays().map(p=>[fmt(p.ts),D.st?.[p.sid]?.name,p.cls,p.amt,nm(p.by)])];
+ if(k=='exp')L=[['Itariki','Byari ibiki','Umubare','Yanditswe na'],...exps().map(p=>[fmt(p.ts),p.what,p.amt,nm(p.by)])];
+ if(k=='unpaid')L=[['Ishuri','Izina','Fees','Yishyuye','Asigaye'],...CL.flatMap(c=>stIn(c).map(s=>[c,s.name,s.fee||0,paid(s.id),(s.fee||0)-paid(s.id)]).filter(r=>r[4]>0))];
+ dl(k+'_'+TERM()+'.csv','\ufeff'+L.map(r=>r.map(q).join(',')).join('\n'),'text/csv;charset=utf-8')};
+ACT.bk=()=>{dl('backup_'+today()+'.json',JSON.stringify(D),'application/json')};
+
+/* ---------- gukurikirana amakuru (Firestore) ---------- */
+function unsubAll(){[...subs,...dsubs].forEach(f=>{try{f()}catch(e){}});subs=[];dsubs=[];subSig='';M2={}}
+function sub(c,flt,after){dsubs.push(FB.watch(c,flt,s=>{D[c]={};s.docs.forEach(([id,d])=>D[c][id]=d);if(after)after(s);render()},e=>console.warn(c,e.code||e.message)))}
+function subscribe(){const sig=role()+'|'+(M().off?1:0)+'|'+(D.me?1:0)+'|'+(meLoaded?1:0);if(sig===subSig)return;subSig=sig;
+ dsubs.forEach(f=>{try{f()}catch(e){}});dsubs=[];if(!activeUser())return;
+ const r=role(),b=boss();
+ sub('staff',null);['st','set','unlock'].forEach(c=>sub(c,null));
+ sub('ann',null,s=>s.added.forEach(([t,id,d])=>{if(d.uid!=uid)notify('Itangazo rishya',String(d.text||'').slice(0,60)||d.by)}));
+ if(r!='acct'){sub('gr',null);sub('att',null);sub('attreq',b?null:['by',uid]);sub('plan',b?null:['by',uid])}
+ if(b||r=='acct'){sub('pay',null);sub('exp',null);sub('moneyreq',null)}else sub('pay',['by',uid]);
+ if(r=='dev'){sub('log',null);sub('msg',null,s=>s.added.forEach(([t,id,d])=>{if(d.to==uid)notify('Ubutumwa bushya',String(d.text).slice(0,50))}))}
+ else ['to','from'].forEach(f=>dsubs.push(FB.watch('msg',[f,uid],s=>{M2[f]={};s.docs.forEach(([id,d])=>M2[f][id]=d);D.msg={...M2.to,...M2.from};if(f=='to')s.added.forEach(([t,id,d])=>notify('Ubutumwa bushya',(D.staff?.[d.from]?.name||d.fname||'')+': '+String(d.text).slice(0,50)));render()},e=>console.warn('msg',e.code||e.message))))}
+async function onUser(u){unsubAll();U=u;D={};PF.photos=[];PF.docs=[];PF.plan=null;Object.keys(G).forEach(k=>{if(k!='le')delete G[k]});authReady=true;meLoaded=false;
+ if(!u){uid='';tab='';render(true);return}
+ uid=u.uid;tab='';initSeen();render(true);
+ try{const me=await FB.get('staff',uid);let dev=!!(me&&me.role=='dev');
+  if(!me){try{await FB.set('staff',uid,{name:'Sisitemu',role:'dev',as:[],cl:[],ts:Date.now()});dev=true}catch(x){dev=false}}
+  if(dev&&!(await FB.get('set','main')))await FB.set('set','main',{term:autoT(),posters:[],delegate:''})}
+ catch(e){fail(e)}
+ subs.push(FB.watchDoc('staff',uid,d=>{D.me=d||null;meLoaded=true;subscribe();render()},e=>{console.warn(e);fail(e)}))}
+
+/* ---------- gutangira ---------- */
+const bootT=setTimeout(()=>{if(!started){$('gate').hidden=false;$('gate').innerHTML=gateHead()+'<div class="gc card"><h2>Ntibishobotse gufungura</h2><p>Genzura interineti hanyuma usubiremo paji.</p><button class="btn full" onclick="location.reload()">Ongera ugerageze</button></div>'}},12000);
+function start(){if(started)return;started=true;clearTimeout(bootT);FB.auth.onChange(u=>{onUser(u).catch(fail)})}
+window.addEventListener('fb-ready',start);
+window.addEventListener('unhandledrejection',e=>console.error(e.reason));
+try{const mf={name:'EP KANYARUYONGA',short_name:'Kanyaruyonga',start_url:location.href.split('#')[0],display:'standalone',background_color:'#F2F5FA',theme_color:'#0B4FA8',icons:[{src:LOGO,sizes:'192x192',type:'image/webp'}]},l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(new Blob([JSON.stringify(mf)],{type:'application/manifest+json'}));document.head.appendChild(l)}catch(e){}
+document.querySelectorAll('link[data-logo]').forEach(l=>{l.href=LOGO});
+render();
+if(window.FB)start();
+
+</script>
+<script type="module">
+import {initializeApp,deleteApp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut,sendPasswordResetEmail,createUserWithEmailAndPassword,EmailAuthProvider,reauthenticateWithCredential,updatePassword} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import {getFirestore,doc,getDoc,setDoc,addDoc,updateDoc,deleteDoc,collection,onSnapshot,query,where,writeBatch} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import {getStorage,ref,uploadBytesResumable,getDownloadURL,deleteObject} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
+const cfg={apiKey:"AIzaSyCW4ZxUBlXX--Uhiv_g6G9EGoPkiSr5_K4",authDomain:"kanyaruyonga.firebaseapp.com",projectId:"kanyaruyonga",storageBucket:"kanyaruyonga.firebasestorage.app",messagingSenderId:"981034915740",appId:"1:981034915740:web:b6532997e0c1b8b4c4da59"};
+const app=initializeApp(cfg),auth=getAuth(app),fs=getFirestore(app),stg=getStorage(app);
+const col=c=>collection(fs,c),dref=(c,id)=>doc(fs,c,id);
+window.FB={
+ auth:{
+  onChange:cb=>onAuthStateChanged(auth,cb),
+  signIn:(e,p)=>signInWithEmailAndPassword(auth,e,p),
+  out:()=>signOut(auth),
+  reset:e=>sendPasswordResetEmail(auth,e),
+  async changePw(o,n){const u=auth.currentUser;await reauthenticateWithCredential(u,EmailAuthProvider.credential(u.email,o));await updatePassword(u,n)},
+  async createUser(e,p){const sec=initializeApp(cfg,'s'+Date.now());try{const a=getAuth(sec),r=await createUserWithEmailAndPassword(a,e,p),id=r.user.uid;await signOut(a);return id}finally{try{await deleteApp(sec)}catch(x){}}}
+ },
+ async get(c,id){const s=await getDoc(dref(c,id));return s.exists()?s.data():null},
+ set:(c,id,d,merge)=>setDoc(dref(c,id),d,merge?{merge:true}:{}),
+ upd:(c,id,d)=>updateDoc(dref(c,id),d),
+ del:(c,id)=>deleteDoc(dref(c,id)),
+ async add(c,d){return (await addDoc(col(c),d)).id},
+ watch(c,flt,on,err){let first=true;const q=flt?query(col(c),where(flt[0],'==',flt[1])):col(c);
+  return onSnapshot(q,s=>{const docs=s.docs.map(d=>[d.id,d.data()]),added=first?[]:s.docChanges().filter(x=>x.type=='added').map(x=>['added',x.doc.id,x.doc.data()]);first=false;on({docs,added})},e=>err&&err(e))},
+ watchDoc:(c,id,on,err)=>onSnapshot(dref(c,id),s=>on(s.exists()?s.data():null),e=>err&&err(e)),
+ async batch(ops){const b=writeBatch(fs);ops.forEach(o=>{const r=dref(o.c,o.id);if(o.t=='set')b.set(r,o.d,o.merge?{merge:true}:{});else if(o.t=='upd')b.update(r,o.d);else b.delete(r)});await b.commit()},
+ upload(path,file,prog){return new Promise((ok,no)=>{const r=ref(stg,path),t=uploadBytesResumable(r,file,{contentType:file.type||'application/octet-stream'});t.on('state_changed',s=>{if(prog)prog(s.totalBytes?s.bytesTransferred/s.totalBytes*100:0)},no,async()=>{try{ok(await getDownloadURL(r))}catch(e){no(e)}})})},
+ rmFile:p=>deleteObject(ref(stg,p))
+};
+window.dispatchEvent(new Event('fb-ready'));
+
+</script>
+</body>
+</html>
