@@ -580,8 +580,8 @@ const schState=cls=>!/^P[1-6]$/.test(cls)?'none':(SCH[cls]===undefined?'idle':(t
 const langOf=sub=>sub=='Kinyarwanda'?'rw':sub=='French'?'fr':'en';
 const lc1=s=>s?s.charAt(0).toLowerCase()+s.slice(1):s,uc1=s=>s?s.charAt(0).toUpperCase()+s.slice(1):s;
 const bulletsOf=t=>String(t||'').split(/\n+/).map(x=>x.replace(/^\s*(?:[•●▪·\u2022\-–—]|\d+[.)])\s*/,'').trim()).filter(Boolean);
-function listify(t){let a=bulletsOf(t);if(a.length==1){const m=a[0].split(/\s(?=\d{1,2}[.)]\s+[A-Z])/);if(m.length>=2)a=m.map(x=>x.replace(/^\d{1,2}[.)]\s*/,'').trim())}
- return a.map(x=>x.replace(/\s+/g,' ').replace(/\s+([.,;:!?])/g,'$1').trim()).filter(Boolean)}
+function listify(t){let a=bulletsOf(t).flatMap(x=>x.split(/\s(?=(?:Pupils|Learners|Students|Teachers?)\s(?!should\b|will\b|can\b|to\b))/).reduce((r,p)=>{if(r.length&&(p.length<14||r[r.length-1].length<14))r[r.length-1]+=' '+p;else r.push(p);return r},[]));if(a.length==1){const m=a[0].split(/\s(?=\d{1,2}[.)]\s+[A-Z])/);if(m.length>=2)a=m.map(x=>x.replace(/^\d{1,2}[.)]\s*/,'').trim())}
+ return a.map(x=>x.replace(/\s+/g,' ').replace(/\s+([.,;:!?])/g,'$1').replace(/\?(?=[A-Z])/g,'').replace(/[,;:]+$/,'').trim()).filter(Boolean)}
 const noDot=s=>String(s||'').replace(/[\s.;:,]+$/,'');
 function firstSentence(s,max){s=noDot(s);if(s.length<=max)return s;const m=s.slice(0,max).lastIndexOf('. ');if(m>30)return s.slice(0,m);const k=s.slice(0,max).lastIndexOf(' ');return s.slice(0,k>30?k:max)+'…'}
 
@@ -598,6 +598,7 @@ en:{
   pe:{t:["Lead a short warm-up related to “{t}”.","Demonstrate the activity safely and explain the rules.","Organise groups for practice; observe, correct and finish with a cool-down."],l:["Take part in the warm-up.","Watch the demonstration and listen to the rules.","Practise in groups, helping one another, then cool down."]},
   art:{t:["Show examples of work (drawing, music, drama or craft) linked to “{t}”.","Demonstrate a technique and give out the materials.","Guide learners to create their own work and encourage new ideas."],l:["Observe the examples and discuss them.","Create their own piece using the technique.","Display and present their work."]},
   other:{t:["Show real objects, pictures or a short demonstration linked to “{t}”.","Organise learners in groups and give a simple task to investigate or discuss.","Invite groups to share their findings and correct misunderstandings."],l:["Observe and answer the teacher's questions.","Work in groups on the task and record their findings.","Present their findings to the class."]}},
+ desc:{p:"Learners review the previous lesson on “{p}” and link it to “{t}”. During development, {dev}. The lesson ends with learners summarising the key points and being assessed.",n:"Learners recall what they already know about “{t}”. During development, {dev}. The lesson ends with learners summarising the key points and being assessed."},
  org:"Organise learners (pairs or groups) and give clear instructions.",guide:"Guide learners to: {x}",support:"Move around, support learners, ask guiding questions and give feedback.",explain:"Explain the key content: {x}",
  concl:{t:["Ask learners to summarise the key points of “{t}”.","Assess learners: {e}","Give feedback and a short follow-up task."],l:["Summarise what they learned.","Do the assessment task: {e}","Ask questions and note the follow-up task."]},
  conclG:{t:["Ask learners to summarise the key points of “{t}”.","Assess learners with 2–3 short oral or written questions.","Give feedback and a short follow-up task."],l:["Summarise what they learned.","Answer the assessment questions.","Ask questions and note the follow-up task."]},
@@ -605,7 +606,7 @@ en:{
  mats:["Chalkboard and chalk","Learners' exercise books and pens","Pupil's Book"],
  ref:"Rwanda Basic Education Board (REB): {s} Pupil's Book and Teacher's Guide, {c}; Scheme of Work 2026-2027.",
  objPre:"By the end of the lesson, learners should be able to: ",objDefault:"By the end of the lesson, learners should be able to explain and practise: {t}.",
- pre:/^(pupils|learners|students|by the end|apprenants|abanyeshuri|mu iherezo|à la fin)/i,sen:"None specified",inRoom:"In the classroom (pairs / groups)",
+ pre:/^(pupils|learners|students|by the end|apprenants|abanyeshuri|mu iherezo|à la fin)/i,sen:"None specified",inRoom:"Inside the classroom",
  ownT:"Own activity",unitDefault:"Unit",free:"Free lesson"},
 rw:{
  intro:{t:["Gusuhuza abanyeshuri no kubarura.","Kumenyesha isomo ry'uyu munsi, “{t}”, no kugaragaza intego yaryo."],l:["Gusuhuza umwarimu no gusubiza ibibazo byo gusubiramo.","Kumva intego no kuvuga ibyo basanzwe bazi kuri “{t}”."]},
@@ -616,6 +617,7 @@ rw:{
   speak:{t:["Kwerekana ikiganiro kigufi kuri “{t}”.","Gutegura abanyeshuri babiri babiri bakina ikiganiro.","Kumva ibiganiro, gukosora no gushimira."],l:["Kumva ikiganiro no kucyigana.","Gukina ikiganiro babiri babiri.","Kugaragariza ikiganiro imbere y'ishuri."]},
   gram:{t:["Kwerekana ingero z'ingenzi kuri “{t}” ku kibaho.","Gusobanura itegeko ryabyo mu buryo bworoshye.","Guha abanyeshuri imyitozo babiri babiri, hanyuma buri wese ukwe."],l:["Kwitegereza ingero no kuvuga itegeko.","Gukora imyitozo babiri babiri.","Gukora imyitozo ukwe mu gitabo cye."]},
   other:{t:["Kwerekana ibikoresho cyangwa amashusho bifitanye isano na “{t}”.","Gushyira abanyeshuri mu matsinda no kubaha igikorwa cyoroheje.","Gusaba amatsinda kugaragaza ibyo bavumbuye no gukosora aho bikenewe."],l:["Kwitegereza no gusubiza ibibazo by'umwarimu.","Gukorera hamwe mu matsinda no kwandika ibyo bavumbuye.","Kugaragariza ishuri ibyo bavumbuye."]}},
+ desc:{p:"Abanyeshuri basubiramo isomo riheruka (“{p}”) bakaryihuza na “{t}”. Mu isomo nyirizina, {dev}. Isomo risozwa n'abanyeshuri basubiramo iby'ingenzi kandi basuzumwa.",n:"Abanyeshuri bibuka ibyo basanzwe bazi kuri “{t}”. Mu isomo nyirizina, {dev}. Isomo risozwa n'abanyeshuri basubiramo iby'ingenzi kandi basuzumwa."},
  org:"Gutegura abanyeshuri (babiri babiri cyangwa mu matsinda) no gutanga amabwiriza asobanutse.",guide:"Kuyobora abanyeshuri: {x}",support:"Kuzenguruka, gufasha abanyeshuri, kubaza ibibazo bibayobora no gutanga ibitekerezo.",explain:"Gusobanura iby'ingenzi: {x}",
  concl:{t:["Gusaba abanyeshuri gusubiramo iby'ingenzi bya “{t}”.","Gusuzuma abanyeshuri: {e}","Gutanga ibitekerezo no guha abanyeshuri umukoro mugufi."],l:["Gusubiramo ibyo bize.","Gukora igikorwa cy'isuzuma: {e}","Kubaza ibibazo no kwandika umukoro."]},
  conclG:{t:["Gusaba abanyeshuri gusubiramo iby'ingenzi bya “{t}”.","Gusuzuma abanyeshuri ukoresheje ibibazo 2–3 bigufi.","Gutanga ibitekerezo no guha abanyeshuri umukoro mugufi."],l:["Gusubiramo ibyo bize.","Gusubiza ibibazo by'isuzuma.","Kubaza ibibazo no kwandika umukoro."]},
@@ -623,7 +625,7 @@ rw:{
  mats:["Ikibaho n'ikaramu y'ikibaho","Amakaye n'amakaramu y'abanyeshuri","Igitabo cy'umunyeshuri"],
  ref:"REB: Igitabo cy'umunyeshuri n'icy'umwarimu, {c}; Integanyanyigisho (Scheme of Work 2026-2027).",
  objPre:"Mu iherezo ry'isomo, abanyeshuri bagomba kuba bashobora: ",objDefault:"Mu iherezo ry'isomo, abanyeshuri bagomba kuba bashobora gusobanura no gukora imyitozo kuri: {t}.",
- pre:/^(abanyeshuri|mu iherezo|pupils|learners|apprenants)/i,sen:"Nta bahari",inRoom:"Mu ishuri (babiri babiri / mu matsinda)",ownT:"Igikorwa cyanjye",unitDefault:"Umutwe",free:"Isomo ryanjye"},
+ pre:/^(abanyeshuri|mu iherezo|pupils|learners|apprenants)/i,sen:"Nta bahari",inRoom:"Mu ishuri",ownT:"Igikorwa cyanjye",unitDefault:"Umutwe",free:"Isomo ryanjye"},
 fr:{
  intro:{t:["Accueillir les apprenants et faire l'appel.","Présenter la leçon du jour, « {t} », et annoncer l'objectif."],l:["Saluer l'enseignant et répondre aux questions de révision.","Écouter l'objectif et dire ce qu'ils savent déjà sur « {t} »."]},
  revise:"Réviser la leçon précédente (« {p} ») avec 2 ou 3 questions rapides.",reviseG:"Réviser la leçon précédente avec 2 ou 3 questions rapides.",
@@ -633,6 +635,7 @@ fr:{
   speak:{t:["Présenter un court dialogue sur « {t} ».","Organiser les apprenants en binômes pour jouer le dialogue.","Écouter les dialogues, corriger et encourager."],l:["Écouter le dialogue et le répéter.","Jouer le dialogue en binômes.","Présenter le dialogue devant la classe."]},
   gram:{t:["Présenter au tableau des exemples clés sur « {t} ».","Expliquer la règle simplement.","Donner des exercices en binômes, puis individuellement."],l:["Observer les exemples et énoncer la règle.","Faire les exercices en binômes.","Faire les exercices individuellement dans leur cahier."]},
   other:{t:["Montrer des objets ou des images liés à « {t} ».","Organiser les apprenants en groupes et donner une tâche simple.","Inviter les groupes à présenter leurs découvertes et corriger si nécessaire."],l:["Observer et répondre aux questions de l'enseignant.","Travailler en groupes et noter leurs découvertes.","Présenter leurs découvertes à la classe."]}},
+ desc:{p:"Les apprenants révisent la leçon précédente (« {p} ») et font le lien avec « {t} ». Pendant le développement, {dev}. La leçon se termine par un résumé des points clés et une évaluation.",n:"Les apprenants rappellent ce qu'ils savent déjà sur « {t} ». Pendant le développement, {dev}. La leçon se termine par un résumé des points clés et une évaluation."},
  org:"Organiser les apprenants (binômes ou groupes) et donner des consignes claires.",guide:"Guider les apprenants pour : {x}",support:"Circuler, soutenir les apprenants, poser des questions guidées et donner un retour.",explain:"Expliquer l'essentiel : {x}",
  concl:{t:["Demander aux apprenants de résumer l'essentiel de « {t} ».","Évaluer les apprenants : {e}","Donner un retour et une courte tâche de prolongement."],l:["Résumer ce qu'ils ont appris.","Faire la tâche d'évaluation : {e}","Poser des questions et noter la tâche de prolongement."]},
  conclG:{t:["Demander aux apprenants de résumer l'essentiel de « {t} ».","Évaluer les apprenants avec 2 ou 3 questions courtes.","Donner un retour et une courte tâche de prolongement."],l:["Résumer ce qu'ils ont appris.","Répondre aux questions d'évaluation.","Poser des questions et noter la tâche de prolongement."]},
@@ -640,7 +643,7 @@ fr:{
  mats:["Tableau et craie","Cahiers et stylos des apprenants","Livre de l'élève"],
  ref:"REB : Livre de l'élève et Guide de l'enseignant, {c} ; Répartition des contenus 2026-2027.",
  objPre:"À la fin de la leçon, les apprenants devront être capables de : ",objDefault:"À la fin de la leçon, les apprenants devront être capables de s'exercer sur : {t}.",
- pre:/^(apprenants|à la fin|pupils|learners|abanyeshuri)/i,sen:"Aucun signalé",inRoom:"En classe (binômes / groupes)",ownT:"Activité personnelle",unitDefault:"Unité",free:"Leçon libre"}};
+ pre:/^(apprenants|à la fin|pupils|learners|abanyeshuri)/i,sen:"Aucun signalé",inRoom:"En classe",ownT:"Activité personnelle",unitDefault:"Unité",free:"Leçon libre"}};
 const COMP={
 en:{com:"Communication: learners speak, listen and share ideas clearly.",coop:"Cooperation, interpersonal management and life skills: learners work together in pairs or groups and respect one another.",crit:"Critical thinking and problem solving: learners analyse examples, give reasons and explain their answers.",creat:"Creativity and innovation: learners create their own examples, sentences or products.",life:"Lifelong learning: learners review what they learned and use it in daily life.",gender:"Gender education: boys and girls take part equally.",incl:"Inclusive education: every learner is helped to take part, including those who need extra support.",env:"Environment and sustainability: learners care for their surroundings.",fin:"Financial education: learners use money and prices sensibly.",peace:"Peace and values education: learners listen to one another with respect."},
 rw:{com:"Itumanaho: abanyeshuri bavuga, bumva kandi basangira ibitekerezo neza.",coop:"Ubufatanye n'imibanire myiza: abanyeshuri bakorera hamwe babiri babiri cyangwa mu matsinda kandi bubahana.",crit:"Gutekereza no gukemura ibibazo: abanyeshuri basesengura ingero, batanga impamvu kandi basobanura ibisubizo byabo.",creat:"Guhanga udushya: abanyeshuri bihangira ingero, interuro cyangwa ibyo bakoze.",life:"Kwiga ubudahwema: abanyeshuri basubiramo ibyo bize kandi babikoresha mu buzima bwa buri munsi.",gender:"Uburinganire n'ubwuzuzanye: abahungu n'abakobwa bitabira ku buryo bungana.",incl:"Uburezi budaheza: buri munyeshuri afashwa kwitabira, harimo n'abakeneye ubufasha bwihariye.",env:"Kubungabunga ibidukikije: abanyeshuri bita ku bibakikije.",fin:"Uburezi ku by'imari: abanyeshuri bakoresha amafaranga n'ibiciro mu buryo bunoze.",peace:"Uburere ku mahoro n'indangagaciro: abanyeshuri bumvana kandi bubahana."},
@@ -654,7 +657,8 @@ function famOf(sub,title,lang){
   if(lang=='fr')return /écri|rédac|production écrite/.test(t)?'write':/parler|oral|dialogue|conversation|écoute|exprimer/.test(t)?'speak':/lire|lecture|texte/.test(t)?'read':'gram';
   return /writ|compos|letter|essay/.test(t)?'write':/speak|dialog|convers|interview|role|oral|listen|present|debate|pronunc/.test(t)?'speak':/read|comprehens|text|story|passage/.test(t)?'read':'gram'}
  return 'other'}
-function mkObj(text,title,lang){const T=TPL[lang],it=listify(text).slice(0,2);
+const ABLE=/^(?:to be able to|be able to|pupils will be able to|learners will be able to|learners should be able to|by the end of (?:the|this) lesson,?\s*(?:the\s*)?(?:learners?|pupils?|students?)?\s*(?:should|will|must)?\s*be able to)\s*:?\s*/i;
+function mkObj(text,title,lang){const T=TPL[lang],it=listify(text).slice(0,2).map(x=>ABLE.test(x)?uc1(x.replace(ABLE,'')):x);
  if(!it.length)return fill(T.objDefault,{t:lc1(title||'')});
  if(T.pre.test(it[0]))return it.map(x=>/[.!?]$/.test(x)?x:x+'.').join(' ');
  return T.objPre+it.map(x=>lc1(noDot(x))).join('; ')+'.'}
@@ -662,9 +666,9 @@ function mkPlan(c){
  const lang=langOf(c.sub),T=TPL[lang],LB=LBL[lang],sc=schOf(c.cls,c.sub),unit=(sc&&c.ui>=0)?sc.u[c.ui]:null,les=(unit&&c.li>=0)?unit.l[c.li]:null,g=les?(les.gi!=null?unit.l[les.gi]:les):{};
  let title=les?les.t:(c.custom||'');if(les&&les.tp&&title.length<40)title=les.tp+': '+title;title=uc1(noDot(title));
  let prev='';if(les){if(c.li>0)prev=unit.l[c.li-1].t;else if(c.ui>0){const pu=sc.u[c.ui-1];prev=pu.l.length?pu.l[pu.l.length-1].t:''}}
- prev=noDot(prev);const fam=famOf(c.sub,title,lang),Dv=(T.dev[fam]||T.dev.other),p=les&&les.p?les.p:1,dur=40*p;
- const t1=Math.round(dur*.15),t3=Math.round(dur*.25),t2=dur-t1-t3,tt={t:lc1(title)||'…'};
- const acts=listify(g.a),tAct=acts.filter(x=>/^(teacher|enseignant|umwarimu|umurezi)\b/i.test(x)),lAct=acts.filter(x=>!/^(teacher|enseignant|umwarimu|umurezi)\b/i.test(x));
+ prev=noDot(prev);const fam=famOf(c.sub,title,lang),Dv=(T.dev[fam]||T.dev.other),p=les&&les.p?les.p:1,dur=40;
+ const t1=6,t2=24,t3=10,tt={t:lc1(title)||'…'};
+ const acts=listify(g.a),tAct=acts.filter(x=>/^(?:l['’]\s*)?(?:teacher|enseignant|umwarimu|umurezi)\b/i.test(x)),lAct=acts.filter(x=>!/^(?:l['’]\s*)?(?:teacher|enseignant|umwarimu|umurezi)\b/i.test(x));
  const eTxt=firstSentence(listify(g.e).slice(0,2).join('; '),190);
  // Intro
  const iT=[fill(T.intro.t[0],tt),prev?fill(T.revise,{p:lc1(prev)}):T.reviseG,fill(T.intro.t[1],tt)],iL=T.intro.l.map(x=>fill(x,tt));
@@ -672,10 +676,10 @@ function mkPlan(c){
  let dT,dL;
  if(lAct.length||tAct.length){
   dT=[T.org];
-  const cont=listify(g.c).join('; ');if(cont)dT.push(fill(T.explain,{x:firstSentence(cont,150)}));
+  const cont=listify(g.c).join('; ');if(cont&&cont.length<=110&&!/;;|,;/.test(cont))dT.push(fill(T.explain,{x:noDot(cont)}));
   if(tAct.length)dT.push(...tAct.slice(0,2).map(x=>firstSentence(x,170)));
   else lAct.slice(0,2).forEach(x=>dT.push(fill(T.guide,{x:lc1(firstSentence(x,150))})));
-  dT.push(T.support);dL=(lAct.length?lAct:tAct).slice(0,4).map(x=>firstSentence(x,170));
+  if(dT.length>3)dT=dT.slice(0,3);dT.push(T.support);dL=(lAct.length?lAct:tAct).slice(0,4).map(x=>firstSentence(x,170));
  }else{dT=Dv.t.map(x=>fill(x,tt));dL=Dv.l.map(x=>fill(x,tt))}
  // Conclusion
  const C=eTxt?T.concl:T.conclG,cT=C.t.map(x=>fill(x,{...tt,e:lc1(eTxt)})),cL=C.l.map(x=>fill(x,{...tt,e:lc1(eTxt)}));
@@ -683,12 +687,15 @@ function mkPlan(c){
  const K=COMP[lang],kw=(title+' '+(g.c||'')).toLowerCase();
  const devC=({math:'crit',read:'crit',write:'creat',speak:'com',gram:'crit',pe:'coop',art:'creat',other:'coop'})[fam];
  let cross='gender';if(/money|price|frw|currency|amafaranga|argent/.test(kw))cross='fin';else if(/environment|tree|water|soil|plant|ibidukikije|environnement/.test(kw))cross='env';else if(/peace|values|unity|amahoro|paix/.test(kw))cross='peace';
+ const f0=dL[0]||'',dev1=firstSentence(f0,120);
+ const devP=lang=='en'?(/^(pupils|learners|students)\b/i.test(dev1)?lc1(dev1):'learners '+lc1(dev1)):lang=='rw'?'abanyeshuri bakora ibi: '+lc1(dev1):'les apprenants vont : '+lc1(dev1);
+ const descTxt=fill(prev?T.desc.p:T.desc.n,{p:lc1(prev),t:lc1(title),dev:devP});
  const mats=listify(g.m).slice(0,5),refs=listify(g.r).slice(0,3),clsTxt=c.cls;
  const subName=(sc&&sc.sn)||c.sub;
  const keyU=unit&&unit.k?listify(unit.k).slice(0,2).join('; '):'';
  return {lang,school:SCHOOL,teacher:c.teacher||'',district:c.dist||'',sector:c.sect||'',term:c.term||'',date:c.date||today(),subject:subName,cls:clsTxt,
   unitNo:unit?String(unit.n):'',unitTitle:unit?uc1(noDot(unit.t||'')):'',kuc:keyU,lessonNo:les?(c.li+1)+' '+LB.of+' '+unit.l.length:'',duration:String(dur),size:String(c.size||''),
-  sen:T.sen,lessonTitle:title,obj:mkObj(g.o,title,lang),plan:T.inRoom,mat:mats.length?mats:T.mats.slice(),
+  sen:T.sen,lessonTitle:title,desc:descTxt,obj:mkObj(g.o,title,lang),plan:T.inRoom,mat:mats.length?mats:T.mats.slice(),
   ref:refs.length?refs:[fill(T.ref,{s:subName,c:clsTxt})],
   steps:[{m:t1,t:iT,l:iL,gen:[K.com]},{m:t2,t:dT,l:dL,gen:[K[devC],K[cross]]},{m:t3,t:cT,l:cL,gen:[K.life,K.incl]}]}}
 /* ================= PDF (A4, urupapuro rumwe) — nta server, nta library ================= */
@@ -696,53 +703,68 @@ const CP1252={8364:128,8218:130,402:131,8222:132,8230:133,8224:134,8225:135,710:
 function pdfEnc(s){const o=[];for(const ch of String(s==null?'':s).replace(/[→⇒➜]/g,'->').replace(/[\u2010-\u2012]/g,'-').replace(/[\u2009\u200a\u202f\u00a0\u200b]/g,' ')){const c=ch.codePointAt(0);if(c>=32&&c<128||c>=160&&c<256)o.push(c);else if(CP1252[c])o.push(CP1252[c]);else if(c==9||c==10)o.push(32);else o.push(63)}return o}
 function pdfEsc(codes){let r='';for(const c of codes){if(c==40||c==41||c==92)r+='\\'+String.fromCharCode(c);else if(c<32||c>126)r+='\\'+('00'+c.toString(8)).slice(-3);else r+=String.fromCharCode(c)}return r}
 const pdfW=(s,b,fs)=>{const T=b?HW.HB:HW.H;let w=0;for(const c of pdfEnc(s))w+=T[c]||0;return w*fs/1000};
-function pdfWrap(text,b,fs,maxw){const out=[];String(text==null?'':text).split(/\n/).forEach(par=>{let line='';par.split(' ').forEach(word=>{if(word==='')return;
-  const test=line?line+' '+word:word;if(pdfW(test,b,fs)<=maxw){line=test;return}
-  if(line)out.push(line);
-  if(pdfW(word,b,fs)<=maxw){line=word;return}
-  let part='';for(const ch of word){if(pdfW(part+ch,b,fs)>maxw){out.push(part);part=ch}else part+=ch}line=part});
-  out.push(line)});return out.length?out:['']}
-function pdfLines(spec,w,fs){ // spec: {label,text,items,bold}
- const L=[],pad=2.6,iw=w-2*pad;
- if(spec.label)pdfWrap(spec.label,true,fs,iw).forEach(t=>L.push({t,b:true,x:0}));
- if(spec.text!=null&&String(spec.text)!=='')pdfWrap(spec.text,!!spec.bold,fs,iw).forEach(t=>L.push({t,b:!!spec.bold,x:0}));
- (spec.items||[]).forEach(it=>{const bw=pdfW('• ',false,fs);const ws=pdfWrap(it,false,fs,iw-bw);ws.forEach((t,i)=>L.push({t:(i?'':'• ')+t,b:false,x:i?bw:0}))});
+const minTxt=(P,n)=>P.lang=='rw'?'Iminota '+n:n+' min';
+/* inyandiko ikoze mu "ibice" (bold/regular): [{t,b}] -> imirongo y'ibice */
+function pdfRuns(parts,fs,maxw){const toks=[];parts.forEach(p=>String(p.t==null?'':p.t).split(/\s+/).forEach(x=>{if(x)toks.push({t:x,b:!!p.b})}));
+ const sp=pdfW(' ',false,fs),lines=[];let cur=[],cw=0;const push=()=>{lines.push(cur);cur=[];cw=0};
+ toks.forEach(tk=>{const w=pdfW(tk.t,tk.b,fs),need=(cur.length?sp:0)+w;
+  if(cw+need<=maxw){cur.push(tk);cw+=need;return}
+  if(cur.length)push();
+  if(w<=maxw){cur.push(tk);cw=w;return}
+  let part='';for(const ch of tk.t){if(pdfW(part+ch,tk.b,fs)>maxw){cur.push({t:part,b:tk.b});push();part=ch}else part+=ch}
+  cur.push({t:part,b:tk.b});cw=pdfW(part,tk.b,fs)});
+ if(cur.length||!lines.length)push();return lines}
+function pdfLines(spec,w,fs){const L=[],pad=2.6,iw=w-2*pad;
+ if(spec.label)pdfRuns([{t:spec.label,b:true}],fs,iw).forEach(t=>L.push({toks:t,x:0,c:spec.center}));
+ if(spec.text!=null&&String(spec.text)!==''){String(spec.text).split('\n').forEach(par=>pdfRuns([{t:par,b:!!spec.bold}],fs,iw).forEach(t=>L.push({toks:t,x:0,c:spec.center})))}
+ (spec.items||[]).forEach(it=>{const bw=pdfW('• ',false,fs);let parts=[{t:it,b:false}];
+  if(spec.boldName){const m=String(it).match(/^([^:]{2,90}?:)\s*([\s\S]*)$/);if(m)parts=[{t:m[1],b:true},{t:m[2],b:false}]}
+  pdfRuns(parts,fs,iw-bw).forEach((t,i)=>L.push({toks:t,x:bw,bullet:i==0}))});
  return L}
+const lineW=(toks,fs)=>{const sp=pdfW(' ',false,fs);return toks.reduce((a,t,i)=>a+(t.gap?14:pdfW(t.t,t.b,fs))+(i?sp:0),0)};
 function pdfBuildPage(P,fs){
- const LB=LBL[P.lang]||LBL.en,PW=595.28,PH=841.89,M=24,W=PW-2*M,lead=fs*1.2,pad=2.6,rows=[];
+ const LB=LBL[P.lang]||LBL.en,PW=595.28,PH=841.89,M=24,W=PW-2*M,lead=fs*1.2,pad=2.6;
  const cellH=lines=>Math.max(1,lines.length)*lead+2*pad;
- function mkRow(cols,minH){ // cols:[{w(frac),spec,fill,span}] -> positions
-  let x=M;const cells=cols.map(c=>{const w=c.w*W,L=pdfLines(c.spec||{},w,fs);const cell={x,w,L,fill:c.fill};x+=w;return cell});
-  const h=Math.max(minH||0,...cells.map(c=>cellH(c.L)));return {cells,h}}
- const lab=t=>({label:t}),val=(l,v)=>({label:l,text:v});
- rows.push(mkRow([{w:.25,spec:val(LB.school,P.school)},{w:.25,spec:val(LB.teacher,P.teacher)},{w:.25,spec:val(LB.district,P.district)},{w:.25,spec:val(LB.sector,P.sector)}]));
- const f=[.09,.12,.17,.07,.08,.14,.13,.20];
- rows.push(mkRow([val(LB.term,P.term),val(LB.date,P.date),val(LB.subject,P.subject),val(LB.cls,P.cls),val(LB.unit,P.unitNo),val(LB.lesson,P.lessonNo),val(LB.duration,P.duration),val(LB.size,P.size)].map((s,i)=>({w:f[i],spec:s}))));
- const two=(l,spec)=>mkRow([{w:.3,spec:lab(l),fill:true},{w:.7,spec}]);
- rows.push(two(LB.sen,{text:P.sen}));rows.push(two(LB.unitTitle,{text:P.unitTitle}));rows.push(two(LB.kuc,{text:P.kuc}));rows.push(two(LB.lt,{text:P.lessonTitle,bold:true}));
+ const mkRow=(cols,minH)=>{let x=M;const cells=cols.map(c=>{const w=c.w*W,L=pdfLines(c.spec||{},w,fs),cell={x,w,L,fill:c.fill};x+=w;return cell});return{cells,h:Math.max(minH||0,...cells.map(c=>cellH(c.L)))}};
+ // inyuma y'imbonerahamwe: umutwe n'imirongo ibiri (ishuri, umwarimu, akarere, umurenge)
+ const head=[];
+ const hl=(a,av,b,bv)=>{const t1=pdfRuns([{t:a+':',b:true},{t:av||'……………',b:false}],fs,W-20)[0],t2=pdfRuns([{t:b+':',b:true},{t:bv||'……………',b:false}],fs,W-20)[0];
+  const one=[...t1,{t:'',gap:true},...t2];return lineW(one,fs)<=W-20?[one]:[t1,t2]};
+ const hdr1=hl(LB.school,P.school,LB.teacher,P.teacher),hdr2=hl(LB.district,P.district,LB.sector,P.sector);
+ const rows=[];
+ const labs=[LB.term,LB.date,LB.subject,LB.cls,LB.unit,LB.lesson,LB.duration,LB.size],f=[.10,.12,.15,.10,.08,.14,.12,.19];
+ const vals=[P.term,P.date,P.subject,P.cls,P.unitNo,P.lessonNo,minTxt(P,P.duration),P.size];
+ rows.push(mkRow(labs.map((l,i)=>({w:f[i],spec:{label:l,center:true},fill:true}))));
+ rows.push(mkRow(vals.map((v,i)=>({w:f[i],spec:{text:v,center:true}}))));
+ const two=(l,spec)=>mkRow([{w:.3,spec:{label:l},fill:true},{w:.7,spec}]);
+ rows.push(two(LB.sen,{text:P.sen}));rows.push(two(LB.unitTitle,{text:P.unitTitle}));rows.push(two(LB.kuc,{text:P.kuc}));rows.push(two(LB.lt,{text:P.lessonTitle}));
  rows.push(two(LB.obj,{text:P.obj}));rows.push(two(LB.plan,{text:P.plan}));rows.push(two(LB.mat,{items:P.mat}));rows.push(two(LB.ref,{items:P.ref}));
- // main table header (two rows)
  const cw=[.13,.32,.32,.23];
- const hLeft=pdfLines({label:LB.timing},cw[0]*W,fs),hDesc=pdfLines({label:LB.desc},(cw[1]+cw[2])*W,fs),hGen=pdfLines({label:LB.gen},cw[3]*W,fs);
- const tL=pdfLines({label:LB.t},cw[1]*W,fs),lL=pdfLines({label:LB.l},cw[2]*W,fs);
- const h1=cellH(hDesc),h2=Math.max(cellH(tL),cellH(lL)),hh=Math.max(h1+h2,cellH(hLeft),cellH(hGen));
- const head={h:hh,h1:hh-h2,h2,cells:[{x:M,w:cw[0]*W,L:hLeft},{x:M+cw[0]*W,w:(cw[1]+cw[2])*W,L:hDesc},{x:M+(cw[0]+cw[1]+cw[2])*W,w:cw[3]*W,L:hGen},{x:M+cw[0]*W,w:cw[1]*W,L:tL},{x:M+(cw[0]+cw[1])*W,w:cw[2]*W,L:lL}]};
- const steps=P.steps.map((s,i)=>mkRow([{w:cw[0],spec:{label:LB.steps[i],text:(s.m||'')+' '+LB.min}},{w:cw[1],spec:{items:s.t}},{w:cw[2],spec:{items:s.l}},{w:cw[3],spec:{items:s.gen}}],30));
- const self=mkRow([{w:1,spec:lab(LB.self),fill:true}],40);
- const titleH=22,total=titleH+rows.reduce((a,r)=>a+r.h,0)+4+head.h+steps.reduce((a,r)=>a+r.h,0)+self.h;
- return {rows,head,steps,self,titleH,total,PW,PH,M,W,lead,pad,fs,avail:PH-2*M}}
+ const main=[];
+ main.push(mkRow([{w:cw[0],spec:{label:LB.timing},fill:true},{w:cw[1]+cw[2],spec:{label:LB.desc},fill:true},{w:cw[3],spec:{label:LB.gen},fill:true}]));
+ main.push(mkRow([{w:cw[0],spec:{}},{w:cw[1]+cw[2],spec:{text:P.desc}},{w:cw[3],spec:{}}]));
+ main.push(mkRow([{w:cw[0],spec:{},fill:true},{w:cw[1],spec:{label:LB.t},fill:true},{w:cw[2],spec:{label:LB.l},fill:true},{w:cw[3],spec:{},fill:true}]));
+ P.steps.forEach((s,i)=>main.push(mkRow([{w:cw[0],spec:{label:LB.steps[i],text:minTxt(P,s.m)}},{w:cw[1],spec:{items:s.t}},{w:cw[2],spec:{items:s.l}},{w:cw[3],spec:{items:s.gen,boldName:true}}],30)));
+ main.push(mkRow([{w:1,spec:{label:LB.self},fill:true}],42));
+ const titleH=20,hdrH=(hdr1.length+hdr2.length)*lead+8;
+ const total=titleH+hdrH+rows.reduce((a,r)=>a+r.h,0)+4+main.reduce((a,r)=>a+r.h,0);
+ return{rows,main,hdr1,hdr2,titleH,hdrH,total,PW,PH,M,W,lead,pad,fs,avail:PH-2*M,LB}}
 function pdfDraw(pg,P){
- const LB=LBL[P.lang]||LBL.en,{rows,head,steps,self,titleH,PH,M,W,lead,pad,fs,PW}=pg,ops=[];let y=M;
+ const{rows,main,hdr1,hdr2,titleH,hdrH,PH,M,W,lead,pad,fs,PW,LB}=pg,ops=[];let y=M;
  const T=(x,top,t,b,size)=>ops.push('BT /'+(b?'F2':'F1')+' '+size.toFixed(2)+' Tf '+x.toFixed(2)+' '+(PH-top).toFixed(2)+' Td ('+pdfEsc(pdfEnc(t))+') Tj ET');
  const box=(x,top,w,h,fill)=>{if(fill)ops.push('0.91 g '+x.toFixed(2)+' '+(PH-top-h).toFixed(2)+' '+w.toFixed(2)+' '+h.toFixed(2)+' re f 0 g');ops.push('0.5 w '+x.toFixed(2)+' '+(PH-top-h).toFixed(2)+' '+w.toFixed(2)+' '+h.toFixed(2)+' re S')};
- const text=(c,top)=>c.L.forEach((ln,i)=>T(c.x+pad+ln.x,top+pad+fs*0.92+i*lead,ln.t,ln.b,fs));
- // title
+ const sp=pdfW(' ',false,fs);
+ const drawToks=(toks,x,base)=>{toks.forEach(t=>{if(t.gap){x+=14+sp;return}if(t.t==='')return;T(x,base,t.t,t.b,fs);x+=pdfW(t.t,t.b,fs)+sp})};
+ const text=(c,top)=>c.L.forEach((ln,i)=>{const base=top+pad+fs*0.92+i*lead;let x=c.x+pad+ln.x;
+  if(ln.c)x=c.x+(c.w-lineW(ln.toks,fs))/2;
+  if(ln.bullet)T(c.x+pad,base,'•',false,fs);
+  drawToks(ln.toks,x,base)});
  const tt=LB.title,tw=pdfW(tt,true,12);T((PW-tw)/2,y+14,tt,true,12);y+=titleH;
+ [hdr1,hdr2].forEach(h=>h.forEach(ln=>{const x=(PW-lineW(ln,fs))/2;drawToks(ln,x,y+fs*0.95);y+=lead}));
+ ops.push('0.80 0.64 0.10 RG 1.1 w '+M.toFixed(2)+' '+(PH-y-2).toFixed(2)+' m '+(PW-M).toFixed(2)+' '+(PH-y-2).toFixed(2)+' l S 0 G');y+=8;
  rows.forEach(r=>{r.cells.forEach(c=>{box(c.x,y,c.w,r.h,c.fill);text(c,y)});y+=r.h});
  y+=4;
- head.cells.forEach((c,i)=>{const th=i<3?(i==1?head.h1:head.h):head.h2,top=i<3?y:y+head.h1;box(c.x,top,c.w,th,true);text(c,top)});y+=head.h;
- steps.forEach(r=>{r.cells.forEach((c,i)=>{box(c.x,y,c.w,r.h,i==0);text(c,y)});y+=r.h});
- self.cells.forEach(c=>{box(c.x,y,c.w,self.h,false);text(c,y)});
+ main.forEach(r=>{r.cells.forEach(c=>{box(c.x,y,c.w,r.h,c.fill);text(c,y)});y+=r.h});
  return ops.join('\n')}
 function pdfAssemble(content){
  const objs=[];const add=s=>objs.push(s);
@@ -795,8 +817,8 @@ function vPlanEdit(){const P=G.lp,LB=LBL[P.lang]||LBL.en;
  const inp=(p,v,ph)=>`<input data-lp="${p}" value="${esc(v)}" ${ph?`placeholder="${esc(ph)}"`:''}>`,ta=(p,v,rows=3)=>`<textarea data-lp="${p}" rows="${rows}">${esc(Array.isArray(v)?v.join('\n'):v)}</textarea>`,lb=t=>`<label class="fl">${esc(t)}</label>`;
  let h=`<div class="row">${'<div>'+lb(LB.teacher)+inp('teacher',P.teacher)+'</div>'}<div>${lb(LB.term)}${inp('term',P.term)}</div></div>`;
  h+=`<div class="row"><div>${lb(LB.unit)}${inp('unitNo',P.unitNo)}</div><div>${lb(LB.lesson)}${inp('lessonNo',P.lessonNo)}</div><div>${lb(LB.duration)}${inp('duration',P.duration)}</div></div>`;
- h+=lb(LB.unitTitle)+inp('unitTitle',P.unitTitle)+lb(LB.kuc)+ta('kuc',P.kuc,2)+lb(LB.lt)+inp('lessonTitle',P.lessonTitle)+lb(LB.obj)+ta('obj',P.obj,3)+lb(LB.plan)+inp('plan',P.plan)+lb(LB.mat+' (umurongo umwe ku kintu)')+ta('mat',P.mat,3)+lb(LB.ref)+ta('ref',P.ref,2);
- P.steps.forEach((s,i)=>{h+=`<div class="it"><b>${esc(LB.steps[i])} — ${esc(s.m)} ${esc(LB.min)}</b>${lb(LB.t)}${ta('steps.'+i+'.t',s.t,4)}${lb(LB.l)}${ta('steps.'+i+'.l',s.l,4)}${lb(LB.gen)}${ta('steps.'+i+'.gen',s.gen,3)}</div>`});
+ h+=lb(LB.unitTitle)+inp('unitTitle',P.unitTitle)+lb(LB.kuc)+ta('kuc',P.kuc,2)+lb(LB.lt)+inp('lessonTitle',P.lessonTitle)+lb(LB.obj)+ta('obj',P.obj,3)+lb(LB.desc)+ta('desc',P.desc,4)+lb(LB.plan)+inp('plan',P.plan)+lb(LB.mat+' (umurongo umwe ku kintu)')+ta('mat',P.mat,3)+lb(LB.ref)+ta('ref',P.ref,2);
+ P.steps.forEach((s,i)=>{h+=`<div class="it"><b>${esc(LB.steps[i])} — ${esc(minTxt(P,s.m))}</b>${lb(LB.t)}${ta('steps.'+i+'.t',s.t,4)}${lb(LB.l)}${ta('steps.'+i+'.l',s.l,4)}${lb(LB.gen)}${ta('steps.'+i+'.gen',s.gen,3)}</div>`});
  h+=`<small>Buri murongo ni igikorwa kimwe. Ibyo uhindura bijya mu PDF.</small><div class="row wrap nf" style="margin:8px 0"><button class="btn g sm" data-a="lpShort">Rigufi</button><button class="btn g sm" data-a="lpGame">Ongeraho umukino</button><button class="btn g sm" data-a="lpOwn">Igikorwa cyanjye</button><button class="btn g sm" data-a="lpUndo" ${(G.lpu||[]).length?'':'disabled'}>Subiza inyuma</button></div><button class="btn full" data-a="lpPdf">Download PDF</button><small style="display:block;margin-top:6px">PDF ibikwa kuri telefoni yawe. Nta kintu kijya kuri Firebase uretse imibare y'isomo wateguye.</small>`;
  return card('Igenamigambi',h)}
 document.addEventListener('focusin',e=>{const el=e.target;if(el.dataset&&el.dataset.lp&&G.lp){const s=JSON.stringify(G.lp),u=(G.lpu=G.lpu||[]);if(u[u.length-1]!==s){u.push(s);if(u.length>30)u.shift();const b=document.querySelector('[data-a=lpUndo]');if(b)b.disabled=false}}});
