@@ -572,7 +572,7 @@ fr:{title:"FICHE DE LEÇON",school:"Nom de l'école",teacher:"Nom de l'enseignan
 };
 const HW={"H":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,278,278,355,556,556,889,667,191,333,333,389,584,278,333,278,278,556,556,556,556,556,556,556,556,556,556,278,278,584,584,584,556,1015,667,667,722,722,667,611,778,722,278,500,667,556,833,722,778,667,778,722,667,611,722,667,944,667,667,611,278,278,278,469,556,333,556,556,500,556,556,278,556,556,222,222,500,222,833,556,556,556,556,333,500,278,556,500,722,500,500,500,334,260,334,584,761,556,0,222,556,333,1000,556,556,333,1000,667,333,1000,0,611,0,0,222,222,333,333,350,556,1000,333,1000,500,333,944,0,500,667,278,333,556,556,556,556,260,556,333,737,370,556,584,333,737,333,400,584,333,333,333,556,537,278,333,333,365,556,834,834,834,611,667,667,667,667,667,667,1000,722,667,667,667,667,278,278,278,278,722,722,778,778,778,778,778,584,778,722,722,722,722,667,667,611,556,556,556,556,556,556,889,500,556,556,556,556,278,278,278,278,556,556,556,556,556,556,556,584,611,556,556,556,556,500,556,500],"HB":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,278,333,474,556,556,889,722,238,333,333,389,584,278,333,278,278,556,556,556,556,556,556,556,556,556,556,333,333,584,584,584,611,975,722,722,722,722,667,611,778,722,278,556,722,611,833,722,778,667,778,722,667,611,722,667,944,667,667,611,333,278,333,584,556,333,556,611,556,611,556,333,611,611,278,278,556,278,889,611,611,611,611,389,556,333,611,556,778,556,556,500,389,280,389,584,761,556,0,278,556,500,1000,556,556,333,1000,667,333,1000,0,611,0,0,278,278,500,500,350,556,1000,333,1000,556,333,944,0,500,667,278,333,556,556,556,556,280,556,333,737,370,556,584,333,737,333,400,584,333,333,333,611,556,278,333,333,365,556,834,834,834,611,722,722,722,722,722,722,1000,722,667,667,667,667,278,278,278,278,722,722,778,778,778,778,778,584,778,722,722,722,722,667,667,611,556,556,556,556,556,556,889,556,556,556,556,556,278,278,278,278,611,611,611,611,611,611,611,584,611,611,611,611,611,556,611,556]};
 /* ================= UMUFASHA WA MWARIMU: imikorere y'igenamigambi ================= */
-const SCHOOL='EP KANYARUYONGA',SCHV='2026a',SCHY='2026-27',SCH={};
+const SCHOOL='EP KANYARUYONGA',SCHV='2026c',SCHY='2026-27',SCH={};
 function schLoad(cls){if(!/^P[1-6]$/.test(cls)||SCH[cls])return;SCH[cls]='loading';
  fetch('sch-'+cls+'.json?v='+SCHV).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(j=>{SCH[cls]=j;render()}).catch(()=>{SCH[cls]='err';render()})}
 const schOf=(cls,sub)=>{const d=SCH[cls];return(d&&typeof d=='object'&&d.s&&d.s[sub])||null};
@@ -658,46 +658,133 @@ function famOf(sub,title,lang){
   return /writ|compos|letter|essay/.test(t)?'write':/speak|dialog|convers|interview|role|oral|listen|present|debate|pronunc/.test(t)?'speak':/read|comprehens|text|story|passage/.test(t)?'read':'gram'}
  return 'other'}
 const ABLE=/^(?:to be able to|be able to|pupils will be able to|learners will be able to|learners should be able to|by the end of (?:the|this) lesson,?\s*(?:the\s*)?(?:learners?|pupils?|students?)?\s*(?:should|will|must)?\s*be able to)\s*:?\s*/i;
-function mkObj(text,title,lang){const T=TPL[lang],it=listify(text).slice(0,2).map(x=>ABLE.test(x)?uc1(x.replace(ABLE,'')):x);
- if(!it.length)return fill(T.objDefault,{t:lc1(title||'')});
- if(T.pre.test(it[0]))return it.map(x=>/[.!?]$/.test(x)?x:x+'.').join(' ');
- return T.objPre+it.map(x=>lc1(noDot(x))).join('; ')+'.'}
+/* ===== Generator y'imbata y'isomo (v2): Development = 3 ku mwarimu + 3 ku banyeshuri, buri imwe ihuye n'iyo hakurya; Intego irangira na "correctly/effectively" ===== */
+const VERBS=new Set(('identify explain read use listen understand solve demonstrate describe define apply calculate list state recognize recognise compare multiply name draw show practice practise add subtract learn find introduce count give convert discuss write create divide measure differentiate arrange perform classify construct mention develop analyze analyse outline explore say brainstorm make match take observe carry sort prepare design order distinguish follow determine open express record review revise answer complete form guide assign put organize organise invite administer work sing play move call visit fill conduct help look talk pronounce lead interview repeat turn pose speak tell choose build cut fold estimate predict summarise summarize present share assess evaluate relisten reinforce consolidate appreciate know carry act use list spell read say listen sketch label colour color paint dance run jump throw catch kick pass hop skip walk stretch balance roll bounce dribble shoot hit swim climb crawl mix dissolve heat cool test plant water collect gather observe investigate dissect examine tell retell rewrite copy trace circle underline tick insert replace arrange rearrange decompose compose simplify round graph plot shade fold cut measure weigh pour fill read-aloud practise talk ask respond reply greet introduce thank request offer accept refuse invite apologise apologize agree disagree suggest advise warn promise sort join split share compare contrast predict infer summarize paraphrase translate pronounce articulate chant rhyme perform act mime imitate pretend role-play roleplay exchange report discuss debate argue persuade interview survey count tally record organise prepare plan decide solve calculate compute check verify justify show prove convert change transform apply use employ demonstrate illustrate model display exhibit present narrate describe tell write compose draft edit revise proofread publish read skim scan locate select highlight note summarise map web brainstorm vote touch shape experiment study place mark point label tick rub press push pull stick glue tear spell rewrite clap tap stamp march identify'.split(/\s+/)));
+const T_VERBS=new Set('ask guide organize organise introduce administer demonstrate assign invite call give provide put show harmonize harmonise lead help review conduct explain move let pose set revise refer focus rearrange distribute facilitate present display greet check monitor supervise encourage motivate arouse stimulate teach assist divide model tell instruct'.split(' '));
+const AUX=new Set('are is was were be been being have has had do does did should could would can may might must shall will not also then which that who how what where when why if'.split(' '));
+const STOPW=new Set('the a an in on at by with using through for of to as and or but from into during before after while their its his her they them we i it this these those each every'.split(' '));
+const GEN={
+ en:[[/group|pair|organi[sz]e|put |form(?:ing)? |divide|distribute/i,"Join the groups and listen to the instructions."],[/ask|question|pose|quiz|oral/i,"Answer the teacher's questions."],[/demonstrat|show|introduc|explain|present|model|read.*aloud|display|illustrat/i,"Observe, listen and ask questions."],[/give|assign|administer|worksheet|exercise|provid|task/i,"Do the given exercise and record the answers."],[/review|revis|summar|recall|check/i,"Recall what was learned and answer the questions."],[/guide|support|help|move|monitor|supervis|encourag/i,"Work on the task with the teacher's support."]],
+ enD:"Take part actively in the activity.",
+ rw:[[/gushyira|gutegura|amatsinda|babiri/i,"Kwishyira mu matsinda no gutega amatwi amabwiriza."],[/kubaza|ibibazo|kubabaza/i,"Gusubiza ibibazo by'umwarimu."],[/kwereka|kwerekana|gusobanur|gusomera|kubasomera|kwigisha/i,"Kwitegereza, gutega amatwi no kubaza."],[/guha|kubaha|imyitozo|igikorwa|gutanga/i,"Gukora imyitozo bahawe no kwandika ibisubizo."],[/gusubiramo|kwibutsa|kunoza|gukosora|kubakosora|kugenzura/i,"Kwibuka ibyo bize no gukosora ibisubizo."],[/gufasha|kubafasha|kuyobora|kugendagenda|kujyana/i,"Gukora igikorwa bafashijwe n'umwarimu."]],
+ rwD:"Kwitabira igikorwa bashishikaye.",
+ fr:[[/groupe|binôme|organis|répartir|former/i,"Rejoindre les groupes et écouter les consignes."],[/question|demander|poser/i,"Répondre aux questions de l'enseignant."],[/montr|présent|expliqu|démontr|modél|illustr/i,"Observer, écouter et poser des questions."],[/donn|distribu|exercice|tâche|fournir/i,"Faire l'exercice donné et noter les réponses."],[/révis|résum|rappel|vérifi/i,"Se rappeler ce qui a été appris et répondre aux questions."],[/guid|soutien|aid|circul|encourag/i,"Travailler avec l'aide de l'enseignant."]],
+ frD:"Participer activement à l'activité."};
+const GENSET=new Set(Object.values(GEN).flat().map(x=>Array.isArray(x)?x[1]:x));
+const fixVerbs=t=>String(t).replace(/(^|,\s*|\band\s+|\bthen\s+)([A-Za-z]+)/g,(m,p,w)=>{const f=fixVerb(w);if(f!==w)return p+f;return p&&VERBS.has(w.toLowerCase())?p+w.toLowerCase():m});
+function genL(t,lang,used){const tab=GEN[lang];let r=null;for(const [re,tx] of tab){if(re.test(t)){r=tx;break}}if(!r)r=GEN[lang+'D'];
+ if(used.has(r)){const alt=GEN[lang+'D'];r=used.has(alt)?r:alt}
+ used.add(r);return r}
+const lst=t=>listify(String(t==null?'':t).replace(/[●▪◦‣■□]/g,'\n').replace(/(\S)[ \t]*•[ \t]*(?=\S)/g,'$1\n').replace(/;[ \t]*(?=\S)/g,'\n'));
+const sents=x=>String(x).replace(/\b(e\.g|i\.e|etc|eg|ie|Fig|No)\.(?=\s)/gi,'$1\u0001').replace(/\s+(?=(?:Pupils|Learners|Students|Teachers?)\s+(?:will|should|can)\b)/g,'\u0002').replace(/\s+(?:and\s+)?then\s+(?=[A-Z])/g,'\u0002').replace(/([.!?])\d{1,2}[.)]\s*/g,'$1\u0002').split(/\u0002|(?<=[.!?])\s+(?=[A-ZÀ-Ý“"])/).map(y=>y.replace(/\u0001/g,'.')).filter(y=>y.trim());
+const cleanTxt=s=>String(s==null?'':s).replace(/\bEg:?\s*/g,'e.g. ').replace(/[;,]\s*[;,]+/g,';').replace(/\s*;\s*$/,'').replace(/\s+([.,;:!?])/g,'$1').replace(/\.{2,}/g,'.').replace(/\s+/g,' ').replace(/^[\s.;:,\-–—•]+/,'').trim();
+const endDot=s=>{s=noDot(cleanTxt(s)).replace(/(?<!\be\.g|\bi\.e|\betc)\.\s+(?=[a-z])/g,' ');return s?s+'.':s};
+const fixVerb=w=>{const l=w.toLowerCase();if(VERBS.has(l))return w;if(/ies$/.test(l)&&VERBS.has(l.slice(0,-3)+'y'))return w.slice(0,-3)+'y';if(/es$/.test(l)&&VERBS.has(l.slice(0,-2)))return w.slice(0,-2);if(/s$/.test(l)&&VERBS.has(l.slice(0,-1)))return w.slice(0,-1);return w};
+const isVerb=w=>VERBS.has(String(w||'').toLowerCase().replace(/[^a-z\-]/g,''));
+const isGer=w=>/^[a-z]{3,}ing$/i.test(String(w||'').replace(/[^a-z]/gi,''))&&!/^(during|morning|evening|king|thing|something|nothing|anything|everything|string|spring|ring|bring|sing|wing)$/i.test(w);
+const balQ=s=>{const o=(s.match(/“/g)||[]).length,c=(s.match(/”/g)||[]).length;if(o>c)s+='”';if(((s.match(/"/g)||[]).length)%2)s+='"';if((s.match(/«/g)||[]).length>(s.match(/»/g)||[]).length)s+=' »';const op=(s.match(/\(/g)||[]).length,cp=(s.match(/\)/g)||[]).length;if(op>cp)s=s.replace(/\s*\([^)]*$/,'');return s};
+function trimTo(s,n){s=noDot(cleanTxt(s));if(s.length<=n)return balQ(s);const dot=s.slice(0,n).lastIndexOf('. ');if(dot>30&&!/\b(?:ex|etc|e\.g|i\.e|Fig|No|p|N°|n°)$/i.test(s.slice(0,dot)))return balQ(s.slice(0,dot));let k=s.slice(0,n).lastIndexOf(' ');if(k<20)k=n;let r=s.slice(0,k).replace(/[\s,;:(\-–]+$/,'');r=r.replace(/\s+(?:and|or|the|a|an|of|to|in|with|by|on|for|at|from|as|using|into|e\.g\.?|i\.e\.?)$/i,'');return balQ(r.replace(/\([^)]*$/,'').replace(/[\s,;:\-–]+$/,''))}
+/* ---- uguhuza igikorwa kimwe n'icyo bihuye: {t:igikorwa cy'umwarimu, l:icy'umunyeshuri} ---- */
+function actPair(raw,lang,used){let x=cleanTxt(raw);if(x.length<4||x.split(/\s+/).length<2)return null;x=x.replace(/^(?:\(?[a-z]\)|\d{1,2}[.)])\s*/i,'');{const lb=x.match(/^(?:group work|pair work|individual work|class work|presentation|discussion|activity\s*[\d.]*|game|role[- ]?play|practice|application|assessment|homework|extension|introduction|conclusion|demonstration|exercise|worksheet|reading|writing|listening|speaking)\s*:\s*(.+)$/i);if(lb&&lb[1].split(/\s+/).length>=3)x=lb[1]}let suffix='';
+ if(/\b(?:the|a|an|of|to|and|or|with|in|on|for|at|from|by|as|than)[.\s]*$/i.test(x)&&lang=='en')return null;
+ if(lang=='en'){const m=x.match(/^((?:in|during|before|after|with|using|through|at|by|as|while|for)\b[^,;:]{0,70}),\s*(.+)$/i);if(m&&!/^(?:in|during|before|after)\s+(?:the\s+)?(?:lesson|class)$/i.test(m[1])){suffix=' '+lc1(m[1]);x=m[2]}
+  let m1=x.match(/^(?:ask|invite|let|get|have|guide|help|tell|instruct|allow|encourage|require|assign|direct|permit|lead|motivate|support|prompt|challenge)\s+(?:the\s+)?(?:learners|pupils|students|children|them|each\s+(?:pupil|learner)|pupil|learner)\s+(?:to\s+)?(.+)$/i);
+  if(m1&&isVerb(m1[1].split(/\s+/)[0])){const core=m1[1];return{t:endDot(x+suffix),l:endDot(uc1(core)+suffix)}}
+  const mt=x.match(/^(?:the\s+)?teachers?\s*(?:will\s+|should\s+|can\s+|may\s+|to\s+|:\s*)?(.+)$/i);
+  if(mt&&/^(?:the\s+)?(?:pupils?|learners?|students?|children|they)\b/i.test(mt[1]))return actPair(mt[1],lang,used);
+  if(mt){const w=mt[1].split(/\s+/);w[0]=fixVerb(w[0]);const tt=uc1(fixVerbs(w.join(' ')))+suffix;return{t:endDot(tt),l:genL(tt,lang,used)}}
+  const ml=x.match(/^(?:the\s+)?(?:pupils?|learners?|students?|children|they)\s*(?:will\s+|should\s+|can\s+|are\s+to\s+|may\s+|must\s+|:\s*)?(?:be\s+able\s+to\s+)?(.+)$/i);
+  if(ml){let core=ml[1];const g=core.match(/^(?:be|are|is)\s+given\s+(.+)$/i);
+   if(g)return{t:endDot('Give learners '+lc1(g[1])+suffix),l:endDot('Work on '+lc1(g[1])+suffix)};
+   const w=core.split(/\s+/);w[0]=fixVerb(w[0]);const fw=w[0].toLowerCase();
+   if(isVerb(fw)){core=w.join(' ');return{t:endDot('Guide learners to '+lc1(core)+suffix),l:endDot(uc1(core)+suffix)}}
+   if(isGer(fw))return{t:endDot('Guide learners through '+lc1(core)+suffix),l:endDot('Take part in '+lc1(core)+suffix)};
+   if(/(?:tion|sion|ment|ness|ity|ics|ship|ure|age)$/.test(fw)&&!AUX.has(fw)&&!STOPW.has(fw)&&core.length>6)return{t:endDot('Guide learners through '+lc1(core)+suffix),l:endDot('Take part in '+lc1(core)+suffix)};
+   return null}
+  const fw=x.split(/\s+/)[0].toLowerCase().replace(/[^a-z\-]/g,'');
+  if(T_VERBS.has(fw)){const tt=uc1(fixVerbs(x))+suffix;return{t:endDot(tt),l:genL(tt,lang,used)}}
+  if(isVerb(fw))return{t:endDot('Guide learners to '+lc1(x)+suffix),l:endDot(uc1(x)+suffix)};
+  if(isGer(fw)||(/(?:tion|sion|ment|ness|ity|ics|ship|ure|age)$/.test(fw)&&!AUX.has(fw)&&!STOPW.has(fw)&&x.length>10))return{t:endDot('Guide learners through '+lc1(x)+suffix),l:endDot('Take part in '+lc1(x)+suffix)};
+  return null}
+ if(lang=='rw'){const INF=/^(?:gu|ku|kw)[a-zA-Z'’]/i;
+  const m1=x.match(/^(?:gusaba|kubasaba|kubaza|kubabaza|kuyobora|kubayobora|gufasha|kubafasha|guhamagara|kubwira|gushishikariza|gutegeka|kwereka|kubereka|kubaha)\s+(?:abanyeshuri\s+|buri\s+munyeshuri\s+)?(.+)$/i);
+  if(m1&&INF.test(m1[1]))return{t:endDot(x),l:endDot(uc1(m1[1]))};
+  if(/^(?:gusomera|kubasomera|guha|gutegura|gushyira|kunoza|gukosora|kubakosora|gusobanurira|gusobanura|kwibutsa|kugenzura|kushimira|kugendagenda|kujyana|gutanga|kwereka|kubaza|gusaba|kubasaba|kuyobora|gufasha|umwarimu)\b/i.test(x)){const tt=x.replace(/^umwarimu\s+/i,'');return{t:endDot(uc1(tt)),l:genL(tt,lang,used)}}
+  if(INF.test(x))return{t:endDot('Gusaba abanyeshuri '+lc1(x)),l:endDot(uc1(x))};
+  return null}
+ const INFR=/^[a-zéèêàâîôûç]+(?:er|ir|re)\b/i;
+ const m1=x.match(/^(?:demander|inviter|laisser|guider|aider|amener|faire)\s+(?:aux\s+|les\s+)?(?:apprenants|élèves)\s+(?:à|de|d['’])\s*(.+)$/i);
+ if(m1&&INFR.test(m1[1]))return{t:endDot(x),l:endDot(uc1(m1[1]))};
+ if(/^(?:l['’]\s*)?enseignant\b/i.test(x)){const tt=x.replace(/^(?:l['’]\s*)?enseignant\s+/i,'');return{t:endDot(uc1(tt)),l:genL(tt,lang,used)}}
+ if(INFR.test(x)){const v=lc1(x);return{t:endDot('Demander aux apprenants '+(/^[aeiouhéèêàâîôû]/i.test(v)?"d'":'de ')+v),l:endDot(uc1(x))}}
+ return null}
+const joinAct=(a,lang)=>{const w=a.map((x,i)=>i?lc1(noDot(x)):noDot(x));const and={en:' and ',rw:' no ',fr:' et '}[lang];return endDot(w.length<2?w[0]:w.slice(0,-1).join(', ')+and+w[w.length-1])};
+/* ---- Development: buri gihe gifite ibice 3 + 3 bihuye ---- */
+function mkDev(g,Dv,tt,lang){const used=new Set(),pairs=[];
+ lst(g.a).flatMap(sents).forEach(r=>{const p=actPair(r,lang,used);if(p&&p.t&&p.l)pairs.push(p)});
+ const ded=[],seen=new Set();pairs.forEach(p=>{const k=p.l.toLowerCase();if(!seen.has(k)){seen.add(k);ded.push(p)}});
+ const tpl=i=>({t:fill(Dv.t[i],tt),l:fill(Dv.l[i],tt)});
+ let slots=[];
+ if(ded.length>=3){const n=ded.length,sz=[Math.floor(n/3),Math.floor(n/3),Math.floor(n/3)];for(let i=0;i<n%3;i++)sz[i]++;let at=0;
+  for(let k=0;k<3;k++){let grp=ded.slice(at,at+sz[k]);at+=sz[k];let tx,lx;
+   for(;;){tx=joinAct(grp.map(p=>p.t),lang);const ng=grp.filter(p=>!GENSET.has(p.l));lx=joinAct((ng.length?ng:grp).map(p=>p.l),lang);if((tx.length<=210&&lx.length<=210)||grp.length<=1)break;grp=grp.slice(0,grp.length-1)}
+   if(tx.length>210||lx.length>210){tx=endDot(trimTo(tx,205));lx=endDot(trimTo(lx,205))}
+   slots.push({t:tx,l:lx})}}
+ else if(ded.length==2)slots=[tpl(0),ded[0],ded[1]];
+ else if(ded.length==1)slots=[tpl(0),ded[0],tpl(2)];
+ else{slots=[tpl(0),tpl(1),tpl(2)];
+  const c=trimTo(lst(g.c)[0]||'',110);
+  if(c&&c.length>=8&&!/;|\.\s|\b(?:pupils|learners|should|will)\b/i.test(c)&&c.split(/\s+/).length>=2){const kw=(c.match(/,/g)||[]).length>=2&&!/[.:]/.test(c);
+   const T={en:[kw?'Introduce the key words: ':'Explain the key content: ','Listen, ask questions and note the key '+(kw?'words.':'content.')],rw:[kw?"Kwerekana amagambo y'ingenzi: ":"Gusobanura iby'ingenzi: ","Gutega amatwi, kubaza no kwandika iby'ingenzi."],fr:[kw?'Présenter les mots clés : ':"Expliquer l'essentiel : ",'Écouter, poser des questions et noter l\'essentiel.']}[lang];
+   slots[0]={t:endDot(T[0]+noDot(c)),l:T[1]}}}
+ slots=slots.map((s,i)=>{const a=endDot(trimTo(s.t,205).replace(/;\s*/g,', ')),b=endDot(trimTo(s.l,205).replace(/;\s*/g,', '));if(a.split(/\s+/).length<3||b.split(/\s+/).length<3){const q=tpl(i);return{t:endDot(q.t.replace(/;\s*/g,', ')),l:endDot(q.l.replace(/;\s*/g,', '))}}return{t:a,l:b}});
+ return{t:slots.map(s=>s.t),l:slots.map(s=>s.l)}}
+/* ---- Intego: irangira na correctly / effectively ---- */
+const OBJ={en:{pre:'By the end of the lesson, the learner will be able to ',def:'explain and practise {t}',joiner:' and ',end:{c:' correctly.',e:' effectively.'}},
+ rw:{pre:"Mu iherezo ry'isomo, umunyeshuri azaba ashobora ",def:'gusobanura no gukora imyitozo ku isomo rya “{t}”',joiner:' no ',end:{c:' neza.',e:' neza.'}},
+ fr:{pre:"À la fin de la leçon, l'apprenant sera capable ",def:"de s'exercer sur le thème « {t} »",joiner:' et ',end:{c:' correctement.',e:' efficacement.'}}};
+const OBJ_TEACHER=/^(?:arouse|motivate|introduce|teach|stimulate|assist|prepare|provide|help\b|facilitate|encourage|expose|make|enable|let)/i;
+function mkObj(text,title,lang,fam){const O=OBJ[lang],ek=(fam=='pe'||fam=='art'||fam=='other')?'e':'c',endTxt=O.end[ek];
+ let items=lst(text).flatMap(x=>cleanTxt(x).split(/(?<=[.!?])\s+(?=[A-ZÀ-Ý])/)).slice(0,5).map(x=>cleanTxt(x).split(/:\s|\s[-–]\s|\s\((?:e\.g|i\.e)\.?/i)[0]).map(x=>{
+  if(lang=='en'){x=x.replace(ABLE,'').replace(/^(?:the\s+)?(?:pupils?|learners?|students?|they)\s*(?:will|should|can|must|are\s+able\s+to|be\s+able\s+to)?\s*(?:be\s+able\s+to\s+)?/i,'').replace(/^(?:to\s+)+/i,'').replace(/\b(?:correctly|effectively)\b\s*/gi,'');x=cleanTxt(x);const w=x.split(/\s+/);if(!w[0])return '';
+   if(OBJ_TEACHER.test(x)&&!/^make\s+(?:a|an|the|use)\b/i.test(x))return '';
+   if(isVerb(w[0])){return lc1(trimTo(x,110))}if(isGer(w[0]))return 'practise '+lc1(trimTo(x,100));return ''}
+  if(lang=='rw'){x=x.replace(/^(?:mu iherezo ry['’]isomo,?\s*)?(?:abanyeshuri|umunyeshuri)\s+(?:bagomba\s+kuba\s+bashobora|bazashobora|bashobora|azashobora|azaba ashobora)\s*:?\s*/i,'').replace(/\s+neza\s*$/i,'');x=cleanTxt(x);
+   if(!/^(?:gu|ku|kw)[a-zA-Z'’]/i.test(x)||/^(?:gusaba|kubasaba|kubaza|kubabaza|gufasha|kubafasha|kuyobora|gushyira|gutegura|guha|kubaha|gusomera|kubasomera)\b/i.test(x))return '';return lc1(trimTo(x,110))}
+  x=x.replace(/^(?:les\s+apprenants|l['’]apprenant)\s+(?:devront|doivent|sera|seront)\s+(?:être\s+)?(?:capables?\s+)?(?:de|d['’])\s*/i,'').replace(/^amener\s+les\s+apprenants\s+(?:à|a)\s+/i,'').replace(/\s*\b(?:correctement|efficacement)\b\s*/gi,' ');x=cleanTxt(x);
+  if(!/^[a-zéèêàâîôûç]+(?:er|ir|re)\b/i.test(x)||/^(?:amener|faire\s+(?:découvrir|lire))\b/i.test(x))return '';return lc1(trimTo(x,110))}).filter(Boolean);
+ items=items.map(x=>x.replace(/\s*[?!]+$/,'').replace(/[,\s]+(?:and|or|no|et|ou)$/i,'').replace(/\s+(?:such as|like|including|nka|tels que)\s+\S+$/i,'').replace(/[\s.]+neza[.\s]*$/i,'').trim()).filter(Boolean);const seen=new Set();items=items.filter(x=>{const k=x.toLowerCase();if(seen.has(k))return false;seen.add(k);return true}).slice(0,2);
+ let body;if(items.length){body=items.join(O.joiner).replace(/\s+neza$/i,'');if(lang=='fr')body=(/^[aeiouhéèêàâîôû]/i.test(body)?"d'":'de ')+body}else{body=fill(O.def,{t:lc1(noDot(title||''))||'…'})}
+ return O.pre+body+endTxt}
 function mkPlan(c){
- const lang=langOf(c.sub),T=TPL[lang],LB=LBL[lang],sc=schOf(c.cls,c.sub),unit=(sc&&c.ui>=0)?sc.u[c.ui]:null,les=(unit&&c.li>=0)?unit.l[c.li]:null,g=les?(les.gi!=null?unit.l[les.gi]:les):{};
+ const lang=langOf(c.sub),T=TPL[lang],LB=LBL[lang],sc=schOf(c.cls,c.sub),unit=(sc&&c.ui>=0)?sc.u[c.ui]:null,les=(unit&&c.li>=0)?unit.l[c.li]:null,g=les?(les.gi!=null&&unit.l[les.gi]?unit.l[les.gi]:les):{};
  let title=les?les.t:(c.custom||'');if(les&&les.tp&&title.length<40)title=les.tp+': '+title;title=uc1(noDot(title));
  let prev='';if(les){if(c.li>0)prev=unit.l[c.li-1].t;else if(c.ui>0){const pu=sc.u[c.ui-1];prev=pu.l.length?pu.l[pu.l.length-1].t:''}}
- prev=noDot(prev);const fam=famOf(c.sub,title,lang),Dv=(T.dev[fam]||T.dev.other),p=les&&les.p?les.p:1,dur=40;
+ prev=noDot(prev);const fam=famOf(c.sub,title,lang),Dv=(T.dev[fam]||T.dev.other),dur=40;
  const t1=6,t2=24,t3=10,tt={t:lc1(title)||'…'};
- const acts=listify(g.a),tAct=acts.filter(x=>/^(?:l['’]\s*)?(?:teacher|enseignant|umwarimu|umurezi)\b/i.test(x)),lAct=acts.filter(x=>!/^(?:l['’]\s*)?(?:teacher|enseignant|umwarimu|umurezi)\b/i.test(x));
- const eTxt=firstSentence(listify(g.e).slice(0,2).join('; '),190);
+ const rawE=cleanTxt(listify(g.e).slice(0,2).join('; '));let eTxt=firstSentence(rawE,190);
+ if(eTxt.length<12||/\b(?:will|should)\b/i.test(eTxt)||/;;|…$/.test(eTxt)||/^(?:gusaba|kubaza)$/i.test(eTxt))eTxt='';
  // Intro
  const iT=[fill(T.intro.t[0],tt),prev?fill(T.revise,{p:lc1(prev)}):T.reviseG,fill(T.intro.t[1],tt)],iL=T.intro.l.map(x=>fill(x,tt));
- // Development
- let dT,dL;
- if(lAct.length||tAct.length){
-  dT=[T.org];
-  const cont=listify(g.c).join('; ');if(cont&&cont.length<=110&&!/;;|,;/.test(cont))dT.push(fill(T.explain,{x:noDot(cont)}));
-  if(tAct.length)dT.push(...tAct.slice(0,2).map(x=>firstSentence(x,170)));
-  else lAct.slice(0,2).forEach(x=>dT.push(fill(T.guide,{x:lc1(firstSentence(x,150))})));
-  if(dT.length>3)dT=dT.slice(0,3);dT.push(T.support);dL=(lAct.length?lAct:tAct).slice(0,4).map(x=>firstSentence(x,170));
- }else{dT=Dv.t.map(x=>fill(x,tt));dL=Dv.l.map(x=>fill(x,tt))}
+ // Development (3 + 3 zihuye)
+ const D=mkDev(g,Dv,tt,lang),dT=D.t,dL=D.l;
  // Conclusion
  const C=eTxt?T.concl:T.conclG,cT=C.t.map(x=>fill(x,{...tt,e:lc1(eTxt)})),cL=C.l.map(x=>fill(x,{...tt,e:lc1(eTxt)}));
  // Competences
  const K=COMP[lang],kw=(title+' '+(g.c||'')).toLowerCase();
  const devC=({math:'crit',read:'crit',write:'creat',speak:'com',gram:'crit',pe:'coop',art:'creat',other:'coop'})[fam];
  let cross='gender';if(/money|price|frw|currency|amafaranga|argent/.test(kw))cross='fin';else if(/environment|tree|water|soil|plant|ibidukikije|environnement/.test(kw))cross='env';else if(/peace|values|unity|amahoro|paix/.test(kw))cross='peace';
- const f0=dL[0]||'',dev1=firstSentence(f0,120);
+ const dev1=trimTo(dL[1]||dL[0]||'',120);
  const devP=lang=='en'?(/^(pupils|learners|students)\b/i.test(dev1)?lc1(dev1):'learners '+lc1(dev1)):lang=='rw'?'abanyeshuri bakora ibi: '+lc1(dev1):'les apprenants vont : '+lc1(dev1);
  const descTxt=fill(prev?T.desc.p:T.desc.n,{p:lc1(prev),t:lc1(title),dev:devP});
  const mats=listify(g.m).slice(0,5),refs=listify(g.r).slice(0,3),clsTxt=c.cls;
  const subName=(sc&&sc.sn)||c.sub;
  const keyU=unit&&unit.k?listify(unit.k).slice(0,2).join('; '):'';
  return {lang,school:SCHOOL,teacher:c.teacher||'',district:c.dist||'',sector:c.sect||'',term:c.term||'',date:c.date||today(),subject:subName,cls:clsTxt,
-  unitNo:unit?String(unit.n):'',unitTitle:unit?uc1(noDot(unit.t||'')):'',kuc:keyU,lessonNo:les?(c.li+1)+' '+LB.of+' '+unit.l.length:'',duration:String(dur),size:String(c.size||''),
-  sen:T.sen,lessonTitle:title,desc:descTxt,obj:mkObj(g.o,title,lang),plan:T.inRoom,mat:mats.length?mats:T.mats.slice(),
+  unitNo:unit?String(unit.n):'',unitTitle:unit?uc1(noDot(unit.t||'')):'',kuc:keyU,lessonNo:les?(c.li+1)+' '+LB.of+' '+unit.l.length:'',duration:String(dur),size:c.size&&+c.size>0?String(c.size):'',
+  sen:T.sen,lessonTitle:title,desc:descTxt,obj:mkObj(g.o,title,lang,fam),plan:T.inRoom,mat:mats.length?mats:T.mats.slice(),
   ref:refs.length?refs:[fill(T.ref,{s:subName,c:clsTxt})],
-  steps:[{m:t1,t:iT,l:iL,gen:[K.com]},{m:t2,t:dT,l:dL,gen:[K[devC],K[cross]]},{m:t3,t:cT,l:cL,gen:[K.life,K.incl]}]}}
+  selfEval:'',steps:[{m:t1,t:iT,l:iL,gen:[K.com]},{m:t2,t:dT,l:dL,gen:[K[devC],K[cross]]},{m:t3,t:cT,l:cL,gen:[K.life,K.incl]}]}}
 /* ================= PDF (A4, urupapuro rumwe) — nta server, nta library ================= */
 const CP1252={8364:128,8218:130,402:131,8222:132,8230:133,8224:134,8225:135,710:136,8240:137,352:138,8249:139,338:140,381:142,8216:145,8217:146,8220:147,8221:148,8226:149,8211:150,8212:151,732:152,8482:153,353:154,8250:155,339:156,382:158,376:159};
 function pdfEnc(s){const o=[];for(const ch of String(s==null?'':s).replace(/[→⇒➜]/g,'->').replace(/[\u2010-\u2012]/g,'-').replace(/[\u2009\u200a\u202f\u00a0\u200b]/g,' ')){const c=ch.codePointAt(0);if(c>=32&&c<128||c>=160&&c<256)o.push(c);else if(CP1252[c])o.push(CP1252[c]);else if(c==9||c==10)o.push(32);else o.push(63)}return o}
@@ -745,7 +832,7 @@ function pdfBuildPage(P,fs){
  main.push(mkRow([{w:cw[0],spec:{}},{w:cw[1]+cw[2],spec:{text:P.desc}},{w:cw[3],spec:{}}]));
  main.push(mkRow([{w:cw[0],spec:{},fill:true},{w:cw[1],spec:{label:LB.t},fill:true},{w:cw[2],spec:{label:LB.l},fill:true},{w:cw[3],spec:{},fill:true}]));
  P.steps.forEach((s,i)=>main.push(mkRow([{w:cw[0],spec:{label:LB.steps[i],text:minTxt(P,s.m)}},{w:cw[1],spec:{items:s.t}},{w:cw[2],spec:{items:s.l}},{w:cw[3],spec:{items:s.gen,boldName:true}}],30)));
- main.push(mkRow([{w:1,spec:{label:LB.self},fill:true}],42));
+ main.push(mkRow([{w:1,spec:{label:LB.self,text:P.selfEval||''},fill:true}],42));
  const titleH=20,hdrH=(hdr1.length+hdr2.length)*lead+8;
  const total=titleH+hdrH+rows.reduce((a,r)=>a+r.h,0)+4+main.reduce((a,r)=>a+r.h,0);
  return{rows,main,hdr1,hdr2,titleH,hdrH,total,PW,PH,M,W,lead,pad,fs,avail:PH-2*M,LB}}
@@ -819,7 +906,7 @@ function vPlanEdit(){const P=G.lp,LB=LBL[P.lang]||LBL.en;
  h+=`<div class="row"><div>${lb(LB.unit)}${inp('unitNo',P.unitNo)}</div><div>${lb(LB.lesson)}${inp('lessonNo',P.lessonNo)}</div><div>${lb(LB.duration)}${inp('duration',P.duration)}</div></div>`;
  h+=lb(LB.unitTitle)+inp('unitTitle',P.unitTitle)+lb(LB.kuc)+ta('kuc',P.kuc,2)+lb(LB.lt)+inp('lessonTitle',P.lessonTitle)+lb(LB.obj)+ta('obj',P.obj,3)+lb(LB.desc)+ta('desc',P.desc,4)+lb(LB.plan)+inp('plan',P.plan)+lb(LB.mat+' (umurongo umwe ku kintu)')+ta('mat',P.mat,3)+lb(LB.ref)+ta('ref',P.ref,2);
  P.steps.forEach((s,i)=>{h+=`<div class="it"><b>${esc(LB.steps[i])} — ${esc(minTxt(P,s.m))}</b>${lb(LB.t)}${ta('steps.'+i+'.t',s.t,4)}${lb(LB.l)}${ta('steps.'+i+'.l',s.l,4)}${lb(LB.gen)}${ta('steps.'+i+'.gen',s.gen,3)}</div>`});
- h+=`<small>Buri murongo ni igikorwa kimwe. Ibyo uhindura bijya mu PDF.</small><div class="row wrap nf" style="margin:8px 0"><button class="btn g sm" data-a="lpShort">Rigufi</button><button class="btn g sm" data-a="lpGame">Ongeraho umukino</button><button class="btn g sm" data-a="lpOwn">Igikorwa cyanjye</button><button class="btn g sm" data-a="lpUndo" ${(G.lpu||[]).length?'':'disabled'}>Subiza inyuma</button></div><button class="btn full" data-a="lpPdf">Download PDF</button><small style="display:block;margin-top:6px">PDF ibikwa kuri telefoni yawe. Nta kintu kijya kuri Firebase uretse imibare y'isomo wateguye.</small>`;
+ h+=`<small>Buri murongo ni igikorwa kimwe. Ibyo uhindura bijya mu PDF.</small><div class="row wrap nf" style="margin:8px 0"><button class="btn g sm" data-a="lpOwn">Ongeraho igikorwa</button><button class="btn g sm" data-a="lpEval">Kwisuzuma (Evaluate)</button><button class="btn g sm" data-a="lpUndo" ${(G.lpu||[]).length?'':'disabled'}>Subiza inyuma</button></div><button class="btn full" data-a="lpPdf">Download PDF</button><small style="display:block;margin-top:6px">PDF ibikwa kuri telefoni yawe. Nta kintu kijya kuri Firebase uretse imibare y'isomo wateguye.</small>`;
  return card('Igenamigambi',h)}
 document.addEventListener('focusin',e=>{const el=e.target;if(el.dataset&&el.dataset.lp&&G.lp){const s=JSON.stringify(G.lp),u=(G.lpu=G.lpu||[]);if(u[u.length-1]!==s){u.push(s);if(u.length>30)u.shift();const b=document.querySelector('[data-a=lpUndo]');if(b)b.disabled=false}}});
 document.addEventListener('input',e=>{const el=e.target;if(el.dataset&&el.dataset.lp&&G.lp){const ks=el.dataset.lp.split('.');let o=G.lp;for(let i=0;i<ks.length-1;i++)o=o[ks[i]];const k=ks[ks.length-1];if(Array.isArray(o[k]))o[k]=el.value.split('\n').map(x=>x.replace(/^\s*[•\-]\s*/,'').trim()).filter(Boolean);else o[k]=el.value}});
@@ -835,15 +922,14 @@ ACT.lpGen=()=>{const s=lpSel();if(!s||!s.sub)return;if(s.custom&&!(G.lct||'').tr
  G.lp=P;G.lpu=[];
  G.lpsrc=(!s.custom&&s.sc)?{cls:s.cls,sub:s.sub,ui:s.ui,li:s.li,no:s.sc.u[s.ui].l[s.li].no||s.li+1,title:P.lessonTitle}:null;
  render(true);setTimeout(()=>{const e=document.querySelector('[data-lp=teacher]');if(e)e.scrollIntoView({behavior:'smooth',block:'start'})},60)};
-ACT.lpShort=()=>{if(!G.lp)return;G.lpu.push(JSON.stringify(G.lp));const P=G.lp;P.steps.forEach(s=>{s.t=s.t.slice(0,2);s.l=s.l.slice(0,2)});P.mat=P.mat.slice(0,3);P.ref=P.ref.slice(0,2);render(true)};
-ACT.lpGame=()=>{if(!G.lp)return;G.lpu.push(JSON.stringify(G.lp));const P=G.lp,T=TPL[P.lang],tt={t:lc1(P.lessonTitle)};P.steps[1].t.push(fill(T.game.t,tt));P.steps[1].l.push(fill(T.game.l,tt));render(true)};
 ACT.lpOwn=async()=>{if(!G.lp)return;const T=TPL[G.lp.lang],v=await dlg({title:T.ownT,ok:'Ongeraho',fields:[{id:'t',label:'Igikorwa cy’umwarimu',type:'textarea'},{id:'l',label:'Igikorwa cy’abanyeshuri',type:'textarea'}]});if(!v)return;
  G.lpu.push(JSON.stringify(G.lp));if(v.t.trim())G.lp.steps[1].t.push(v.t.trim());if(v.l.trim())G.lp.steps[1].l.push(v.l.trim());render(true)};
+ACT.lpEval=async()=>{if(!G.lp)return;const v=await dlg({title:'Kwisuzuma kw’umwarimu (Evaluate)',ok:'Emeza',fields:[{id:'e',label:'Andika kwisuzuma kwawe (si itegeko, wasiga ubusa)',type:'textarea',value:G.lp.selfEval||''}]});if(!v)return;G.lpu.push(JSON.stringify(G.lp));G.lp.selfEval=(v.e||'').trim();render(true)};
 ACT.lpUndo=()=>{const u=G.lpu||[];if(!u.length)return;G.lp=JSON.parse(u.pop());render(true)};
 function lpFile(P){const a=s=>String(s||'').normalize('NFD').replace(/[^\w]+/g,'_').replace(/^_+|_+$/g,'').slice(0,22);return 'Lesson-plan_'+a(P.cls)+'_'+a(P.subject)+'_'+a(P.date)+'.pdf'}
 function lpDownload(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500)}
 ACT.lpPdf=async()=>{const P=G.lp;if(!P)return;const r=pdfPlan(P);
- if(!r.fits)return toast('Igenamigambi ntiryuzuye urupapuro rumwe. Kanda "Rigufi" cyangwa ugabanye inyandiko.','bad');
+ if(!r.fits)return toast('Igenamigambi ntiryuzuye urupapuro rumwe. Gabanya inyandiko mu bikorwa cyangwa mu kwisuzuma.','bad');
  lpDownload(r.blob,lpFile(P));
  const s=G.lpsrc;if(s&&!isDev()){const id=[uid,s.cls,SUB.indexOf(s.sub),s.ui,s.li].join('_');
   if(await run(()=>FB.set('lpr',id,{by:uid,cls:s.cls,sub:s.sub,si:SUB.indexOf(s.sub),ui:s.ui,li:s.li,no:s.no,title:cut(s.title,120),ts:Date.now(),y:SCHY,term:TERM()}),'PDF yabitswe kuri telefoni. Isomo ryanditswe mu mibare.'))log('Yateguye isomo '+s.cls+' '+s.sub+' '+cut(s.title,60))}
